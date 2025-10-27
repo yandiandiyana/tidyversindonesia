@@ -1,0 +1,5 @@
+^renv$
+^renv\.lock$
+^IndonesiaRaya\.Rproj$
+^\.Rproj\.user$
+^LICENSE\.md$
