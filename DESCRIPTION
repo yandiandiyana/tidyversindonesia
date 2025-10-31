@@ -1,14 +1,31 @@
 Package: tidyversindonesia
-Title: Versi Bahasa Indonesia dari Tidyverse
-Version: 0.0.0.9000
+Type: Package
+Title: A Learning Bridge to the Tidyverse for Indonesia
+Version: 0.1.0
 Authors@R: 
-    person("First", "Last", , "first.last@example.com", role = c("aut", "cre"))
-Description: What the package does (one paragraph).
+    person("Yandi", "Andiyana", 
+           email = "yandi.andiyana@gmail.com", 
+           role = c("aut", "cre"))
+Description: 
+    Provides Tidyverse functions with Indonesian-language names to help learners 
+    in Indonesia grasp data science concepts more intuitively. It serves as an 
+    educational bridge built upon the Tidyverse data-science workflow 
+    (import, tidy, transform, visualize, model, and communicate). Once mastered, 
+    users can easily transition to the original Tidyverse packages.
 License: MIT + file LICENSE
 Encoding: UTF-8
-Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.3.3
-Imports: 
+Depends: R (>= 4.1)
+Imports:
     dplyr,
     ggplot2,
-    lubridate
+    readr,
+    forcats,
+    tidyr,
+    readxl,
+    rstudioapi
+Suggests: 
+    knitr,
+    rmarkdown
+RoxygenNote: 7.3.3
+Language: en
+LazyData: true

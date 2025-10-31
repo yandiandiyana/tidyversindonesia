@@ -1,5 +1,3 @@
-^renv$
-^renv\.lock$
-^IndonesiaRaya\.Rproj$
+^.*\.Rproj$
 ^\.Rproj\.user$
-^LICENSE\.md$
+^tidyversindonesia\.Rproj$
