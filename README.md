@@ -1,102 +1,92 @@
-# tidyversindonesia
 
-## A Learning Bridge to the Tidyverse for Indonesia
+# tidyversindonesia 🇮🇩
 
-`tidyversindonesia` helps Indonesian learners explore data science concepts through familiar language.  
-It provides Tidyverse functions with Indonesian-language names, serving as an educational bridge to the original Tidyverse ecosystem.
+## Jembatan Belajar Tidyverse versi Bahasa Indonesia 🤝
 
-The package follows the Tidyverse data-science workflow — *import*, *tidy*, *transform*, *visualize*, *model*, and *communicate* — making it easier for beginners to learn step by step before transitioning to standard Tidyverse syntax.
+`tidyversindonesia` membantu pemula R memahami data science tanpa
+hambatan bahasa teknis. Selain menyediakan **nama fungsi versi Bahasa
+Indonesia** untuk Tidyverse, package ini juga menggunakan model proses
+data science R4DS:
 
----
+> **I M P O R T → T I D Y → T R A N S F O R M → V I S U A L I Z E → M O
+> D E L → C O M M U N I C A T E**
 
-## Key Features
+yang diterjemahkan dan menjadi awalan nama fungsi: \> **Impor → Rapi →
+Transformasi → Visualisasi → Model → Komunikasi**
 
-- Functions with names translated into Bahasa Indonesia.  
-- Consistent with the Tidyverse philosophy and syntax.  
-- Supports the full data science cycle: **import → tidy → transform → visualize → model → communicate**.  
-- Designed for education, tutorials, and self-learning for Indonesian-speaking audiences.  
+------------------------------------------------------------------------
 
----
+## Fitur Utama ✨
 
-## Installation
+| Tahap | Tidyversindonesia | Tujuan | Tidyverse |
+|----|----|----|----|
+| 1\. Import | `impor_baca_excel()` | Membaca data dari Excel | `readxl::read_excel()` |
+| 2\. Tidy | `rapi_pivot_memanjang()` | Merapikan data format wide → long | `tidyr::pivot_longer()` |
+| 3\. Transform | `transformasi_pilih()` | Memilih kolom untuk analisis | `dplyr::select()` |
+| 4\. Visualize | `visualisasi_ggplot()` | Membuat grafik cepat | `ggplot(data) + geom_*` |
+| 5\. Model | `model_regresi()` | Regresi linear sederhana | `lm()` + `broom::tidy()` |
+| 6\. Communicate | (coming soon) | Output narasi otomatis | `gt`, `report`, `quarto` |
 
-You can install the development version of **tidyversindonesia** from GitHub using:
+> pendekatan ini mempermudah belajar, bukan mengganti bahasa R dan
+> Tidyverse selamanya.  
+> Tujuan akhir tetap: **menguasai Tidyverse**.
 
-```r
-# Install remotes package if not installed
-install.packages("remotes")
+------------------------------------------------------------------------
 
-# Install tidyversindonesia from GitHub
+## Instalasi
+
+``` r
+install.packages("remotes") # kalau belum ada
 remotes::install_github("yandiandiyana/tidyversindonesia")
-```
-
-After installation, load the package:
-
-```r
 library(tidyversindonesia)
 ```
 
----
+------------------------------------------------------------------------
 
-## Example
+## Contoh Workflow Lengkap 🌱
 
-Here’s a simple example using `visualisasi_plot()`, `estetika()`, and `geometrik_titik()` — the Indonesian versions of `ggplot()`, `aes()`, and `geom_point()`:
+``` r
+data <- impor_baca_excel("data/belajar.xlsx")
 
-```r
-# Fungsi visualisasi versi Bahasa Indonesia
-visualisasi_plot(penguins, estetika(x = bill_len, y = bocy_mass, color = species)) +
+data_rapi <- rapi_pivot_memanjang(
+  data,
+  kolom = c(tinggi, berat),
+  nama = "variabel",
+  nilai = "angka"
+)
+
+data_pilih <- transformasi_pilih(data_rapi, variabel, angka, spesies)
+
+visualisasi_ggplot(
+  data_pilih,
+  estetika(x = angka, y = variabel, color = spesies)
+) +
   geometrik_titik()
+
+hasil_model <- model_regresi(angka ~ variabel, data = data_pilih)
+hasil_model
 ```
 
-*(This example will create a scatter plot of penguin bill length vs. body mass.)*
+Output model rapi seperti `broom::tidy()`.
 
----
+------------------------------------------------------------------------
 
-## Learning Path
+## Kontribusi & Diskusi 🤗
 
-`tidyversindonesia` is designed to help learners master data science the Tidyverse way:
+Ayo berkembang bersama — semua level boleh ikut!
 
-1. **Import** – read data from multiple sources  
-2. **Tidy** – clean and reshape data for analysis  
-3. **Transform** – derive new variables and summaries  
-4. **Visualize** – create meaningful plots with `ggplot2`  
-5. **Model** – explore statistical and predictive models  
-6. **Communicate** – share insights through reports and visualizations
+- Buka Issue →
+  <https://github.com/yandiandiyana/tidyversindonesia/issues>
+- Diskusi nama fungsi →
+  <https://github.com/yandiandiyana/tidyversindonesia/discussions>
+- Pull Request untuk kontribusi kode & dokumentasi
 
-Once familiar with these workflows, learners can easily transition to the standard Tidyverse functions.
+------------------------------------------------------------------------
 
----
-
-## Contributing
-
-Contributions are welcome!  
-If you’d like to add new Indonesian function names, fix bugs, or improve documentation:
-
-1. Fork this repository  
-2. Create a new branch (`git checkout -b feature-name`)  
-3. Commit your changes (`git commit -m "Add new feature"`)  
-4. Push to the branch (`git push origin feature-name`)  
-5. Open a pull request  
-
-For major changes, please open an issue first to discuss what you’d like to change.
-
----
-
-## License
-
-This package is licensed under the **MIT License**.  
-See the [LICENSE](LICENSE) file for details.
-
----
-
-## Author
+## Penulis
 
 **Yandi Andiyana**  
-Email: yandi.andiyana@gmail.com  
-GitHub: [yandiandiyana](https://github.com/yandiandiyana)
+Instagram: **@yandiandiyana**  
+GitHub: <https://github.com/yandiandiyana>
 
----
-
-## Acknowledgements
-
-Inspired by the [Tidyverse](https://www.tidyverse.org/) project and its philosophy of making data science accessible, consistent, and elegant.
+> Semoga package menjadi jalan kebaikan kecil menuju Tidyverse ✨🙏

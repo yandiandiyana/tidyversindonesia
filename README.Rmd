@@ -1,0 +1,89 @@
+---
+output: github_document
+---
+
+# tidyversindonesia 🇮🇩
+
+## Jembatan Belajar Tidyverse versi Bahasa Indonesia 🤝
+
+`tidyversindonesia` membantu pemula R memahami data science tanpa hambatan bahasa teknis. Selain menyediakan **nama fungsi versi Bahasa Indonesia** untuk Tidyverse, package ini juga menggunakan model proses data science R4DS:
+
+> **I M P O R T → T I D Y → T R A N S F O R M → V I S U A L I Z E → M O D E L → C O M M U N I C A T E**
+
+yang diterjemahkan dan menjadi awalan nama fungsi:
+> **Impor → Rapi → Transformasi → Visualisasi → Model → Komunikasi**
+
+---
+
+## Fitur Utama ✨
+
+| Tahap | Tidyversindonesia | Tujuan | Tidyverse |
+|---|---|---|---|
+| 1. Import | `impor_baca_excel()` | Membaca data dari Excel | `readxl::read_excel()` |
+| 2. Tidy | `rapi_pivot_memanjang()` | Merapikan data format wide → long | `tidyr::pivot_longer()` |
+| 3. Transform | `transformasi_pilih()` | Memilih kolom untuk analisis | `dplyr::select()` |
+| 4. Visualize | `visualisasi_ggplot()` | Membuat grafik cepat | `ggplot(data) + geom_*` |
+| 5. Model | `model_regresi()` | Regresi linear sederhana | `lm()` + `broom::tidy()` |
+| 6. Communicate | (coming soon) | Output narasi otomatis | `gt`, `report`, `quarto` |
+
+> pendekatan ini mempermudah belajar, bukan mengganti bahasa R dan Tidyverse selamanya.  
+> Tujuan akhir tetap: **menguasai Tidyverse**.
+
+---
+
+## Instalasi
+
+```r
+install.packages("remotes") # kalau belum ada
+remotes::install_github("yandiandiyana/tidyversindonesia")
+library(tidyversindonesia)
+```
+
+---
+
+## Contoh Workflow Lengkap 🌱
+
+```r
+data <- impor_baca_excel("data/belajar.xlsx")
+
+data_rapi <- rapi_pivot_memanjang(
+  data,
+  kolom = c(tinggi, berat),
+  nama = "variabel",
+  nilai = "angka"
+)
+
+data_pilih <- transformasi_pilih(data_rapi, variabel, angka, spesies)
+
+visualisasi_ggplot(
+  data_pilih,
+  estetika(x = angka, y = variabel, color = spesies)
+) +
+  geometrik_titik()
+
+hasil_model <- model_regresi(angka ~ variabel, data = data_pilih)
+hasil_model
+```
+
+Output model rapi seperti `broom::tidy()`.
+
+---
+
+
+## Kontribusi & Diskusi 🤗
+
+Ayo berkembang bersama — semua level boleh ikut!
+
+- Buka Issue → https://github.com/yandiandiyana/tidyversindonesia/issues
+- Diskusi nama fungsi → https://github.com/yandiandiyana/tidyversindonesia/discussions
+- Pull Request untuk kontribusi kode & dokumentasi
+
+---
+
+## Penulis
+
+**Yandi Andiyana**  
+Instagram: **@yandiandiyana**  
+GitHub: https://github.com/yandiandiyana
+
+> Semoga package menjadi jalan kebaikan kecil menuju Tidyverse ✨🙏
