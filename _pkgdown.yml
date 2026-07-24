@@ -3,6 +3,8 @@ url: https://yandiandiyana.github.io/tidyversindonesia
 template:
   bootstrap: 5
 
+logo: man/figures/tidyversindonesia.jng
+
 home:
   title: "tidyversindonesia"
   description: "Paket tidyverse versi Bahasa Indonesia"
@@ -16,3 +18,5 @@ navbar:
       - news
     right:
       - github
+
+
