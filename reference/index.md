@@ -1,0 +1,161 @@
+# Package index
+
+## All functions
+
+- [`dasaR_jumlah()`](https://yandiandiyana.github.io/tidyversindonesia/reference/dasaR_jumlah.md)
+  : Menjumlahkan nilai vektor
+- [`dasaR_maksimum()`](https://yandiandiyana.github.io/tidyversindonesia/reference/dasaR_maksimum.md)
+  : Mengambil nilai maksimum
+- [`dasaR_median()`](https://yandiandiyana.github.io/tidyversindonesia/reference/dasaR_median.md)
+  : Menghitung nilai median
+- [`dasaR_minimum()`](https://yandiandiyana.github.io/tidyversindonesia/reference/dasaR_minimum.md)
+  : Mengambil nilai minimum
+- [`dasaR_panjang()`](https://yandiandiyana.github.io/tidyversindonesia/reference/dasaR_panjang.md)
+  : Menghitung panjang vektor
+- [`dasaR_rata_rata()`](https://yandiandiyana.github.io/tidyversindonesia/reference/dasaR_rata_rata.md)
+  : Menghitung nilai rata-rata
+- [`dasaR_rentang()`](https://yandiandiyana.github.io/tidyversindonesia/reference/dasaR_rentang.md)
+  : Menghitung nilai rentang
+- [`dasaR_standar_deviasi()`](https://yandiandiyana.github.io/tidyversindonesia/reference/dasaR_standar_deviasi.md)
+  : Menghitung standar deviasi
+- [`dasaR_unik()`](https://yandiandiyana.github.io/tidyversindonesia/reference/dasaR_unik.md)
+  : Mengambil nilai unik
+- [`dasaR_variansi()`](https://yandiandiyana.github.io/tidyversindonesia/reference/dasaR_variansi.md)
+  : Menghitung variansi
+- [`data_direktori_lihat()`](https://yandiandiyana.github.io/tidyversindonesia/reference/data_direktori_lihat.md)
+  : Menampilkan direktori kerja aktif
+- [`data_direktori_simpan()`](https://yandiandiyana.github.io/tidyversindonesia/reference/data_direktori_simpan.md)
+  : Mengubah direktori kerja aktif
+- [`data_lihat_dimensi()`](https://yandiandiyana.github.io/tidyversindonesia/reference/data_lihat_dimensi.md)
+  : Melihat dimensi data (jumlah baris dan jumlah kolom)
+- [`data_lihat_ekor()`](https://yandiandiyana.github.io/tidyversindonesia/reference/data_lihat_ekor.md)
+  : Menampilkan beberapa baris terakhir dari data frame
+- [`data_lihat_kepala()`](https://yandiandiyana.github.io/tidyversindonesia/reference/data_lihat_kepala.md)
+  : Menampilkan beberapa baris pertama dari data frame
+- [`data_lihat_nama()`](https://yandiandiyana.github.io/tidyversindonesia/reference/data_lihat_nama.md)
+  : Melihat nama kolom
+- [`data_lihat_sekilas()`](https://yandiandiyana.github.io/tidyversindonesia/reference/data_lihat_sekilas.md)
+  : Melihat sekilas struktur data
+- [`estetika()`](https://yandiandiyana.github.io/tidyversindonesia/reference/estetika.md)
+  : Menentukan pemetaan estetika visualisasi
+- [`grafik_facet_baris_kolom()`](https://yandiandiyana.github.io/tidyversindonesia/reference/grafik_facet_baris_kolom.md)
+  : Facet baris dan kolom
+- [`grafik_facet_kolom()`](https://yandiandiyana.github.io/tidyversindonesia/reference/grafik_facet_kolom.md)
+  : Facet dengan kolom
+- [`grafik_geometrik_batang()`](https://yandiandiyana.github.io/tidyversindonesia/reference/grafik_geometrik_batang.md)
+  : Membuat diagram batang (bar chart)
+- [`grafik_geometrik_boxplot()`](https://yandiandiyana.github.io/tidyversindonesia/reference/grafik_geometrik_boxplot.md)
+  : Membuat boxplot
+- [`grafik_geometrik_densitas()`](https://yandiandiyana.github.io/tidyversindonesia/reference/grafik_geometrik_densitas.md)
+  : Membuat plot densitas (density plot)
+- [`grafik_geometrik_histogram()`](https://yandiandiyana.github.io/tidyversindonesia/reference/grafik_geometrik_histogram.md)
+  : Membuat histogram
+- [`grafik_geometrik_titik()`](https://yandiandiyana.github.io/tidyversindonesia/reference/grafik_geometrik_titik.md)
+  : Menambahkan layer titik (scatter plot)
+- [`grafik_geometrik_tren()`](https://yandiandiyana.github.io/tidyversindonesia/reference/grafik_geometrik_tren.md)
+  : Menambahkan garis tren
+- [`grafik_label()`](https://yandiandiyana.github.io/tidyversindonesia/reference/grafik_label.md)
+  : Menambahkan label dan judul pada grafik
+- [`grafik_tema_gelap()`](https://yandiandiyana.github.io/tidyversindonesia/reference/grafik_tema_gelap.md)
+  : Membuat grafik dengan tema gelap
+- [`grafik_tema_hampa()`](https://yandiandiyana.github.io/tidyversindonesia/reference/grafik_tema_hampa.md)
+  : Membuat grafik dengan tema hampa
+- [`grafik_tema_klasik()`](https://yandiandiyana.github.io/tidyversindonesia/reference/grafik_tema_klasik.md)
+  : Membuat grafik dengan tema klasik
+- [`grafik_tema_minimal()`](https://yandiandiyana.github.io/tidyversindonesia/reference/grafik_tema_minimal.md)
+  : Membuat grafik dengan tema minimal
+- [`grafik_tema_ringan()`](https://yandiandiyana.github.io/tidyversindonesia/reference/grafik_tema_ringan.md)
+  : Membuat grafik dengan tema ringan
+- [`impor_baca_csv()`](https://yandiandiyana.github.io/tidyversindonesia/reference/impor_baca_csv.md)
+  : Mengimpor data dari file CSV
+- [`impor_baca_excel()`](https://yandiandiyana.github.io/tidyversindonesia/reference/impor_baca_excel.md)
+  : Mengimpor data dari file Excel
+- [`input_tabel_tibble()`](https://yandiandiyana.github.io/tidyversindonesia/reference/input_tabel_tibble.md)
+  : Membuat tabel tibble
+- [`input_tabel_tribble()`](https://yandiandiyana.github.io/tidyversindonesia/reference/input_tabel_tribble.md)
+  : Membuat tibble baris-per-baris (tribble)
+- [`input_tulis_csv()`](https://yandiandiyana.github.io/tidyversindonesia/reference/input_tulis_csv.md)
+  : Menyimpan data ke file CSV
+- [`input_tulis_excel()`](https://yandiandiyana.github.io/tidyversindonesia/reference/input_tulis_excel.md)
+  : Menyimpan data ke file Excel
+- [`input_vektor()`](https://yandiandiyana.github.io/tidyversindonesia/reference/input_vektor.md)
+  : Menggabungkan nilai menjadi sebuah vektor
+- [`kolom_ambil()`](https://yandiandiyana.github.io/tidyversindonesia/reference/kolom_ambil.md)
+  : Mengambil kolom menjadi vektor
+- [`kolom_diakhiri()`](https://yandiandiyana.github.io/tidyversindonesia/reference/kolom_diakhiri.md)
+  : Memilih kolom yang namanya diakhiri dengan pola tertentu
+- [`kolom_diawali()`](https://yandiandiyana.github.io/tidyversindonesia/reference/kolom_diawali.md)
+  : Memilih kolom yang namanya diawali dengan pola tertentu
+- [`kolom_ekstrak_angka()`](https://yandiandiyana.github.io/tidyversindonesia/reference/kolom_ekstrak_angka.md)
+  : Mengekstrak angka dari teks
+- [`kolom_ganti_nama()`](https://yandiandiyana.github.io/tidyversindonesia/reference/kolom_ganti_nama.md)
+  : Mengganti nama kolom
+- [`kolom_jika_maka()`](https://yandiandiyana.github.io/tidyversindonesia/reference/kolom_jika_maka.md)
+  : Memilih nilai berdasarkan logika
+- [`kolom_mengandung()`](https://yandiandiyana.github.io/tidyversindonesia/reference/kolom_mengandung.md)
+  : Memilih kolom yang namanya mengandung teks tertentu
+- [`kolom_menurun()`](https://yandiandiyana.github.io/tidyversindonesia/reference/kolom_menurun.md)
+  : Mengurutkan nilai secara menurun
+- [`kolom_pilih_sama()`](https://yandiandiyana.github.io/tidyversindonesia/reference/kolom_pilih_sama.md)
+  : Memilih kolom berdasarkan kesamaan nama
+- [`kolom_pilih_semua()`](https://yandiandiyana.github.io/tidyversindonesia/reference/kolom_pilih_semua.md)
+  : Memilih semua kolom
+- [`kolom_rentang_angka()`](https://yandiandiyana.github.io/tidyversindonesia/reference/kolom_rentang_angka.md)
+  : Memilih kolom berdasarkan pola rentang angka
+- [`kolom_tipe()`](https://yandiandiyana.github.io/tidyversindonesia/reference/kolom_tipe.md)
+  : Memilih kolom berdasarkan kondisi fungsi
+- [`penguin`](https://yandiandiyana.github.io/tidyversindonesia/reference/penguin.md)
+  : Data penguin untuk pembelajaran sains data
+- [`rapi_gabung_kolom()`](https://yandiandiyana.github.io/tidyversindonesia/reference/rapi_gabung_kolom.md)
+  : Menggabungkan beberapa kolom menjadi satu
+- [`rapi_hapus_na()`](https://yandiandiyana.github.io/tidyversindonesia/reference/rapi_hapus_na.md)
+  : Menghapus baris dengan nilai hilang (NA)
+- [`rapi_isi_na()`](https://yandiandiyana.github.io/tidyversindonesia/reference/rapi_isi_na.md)
+  : Mengisi nilai hilang (NA)
+- [`rapi_pisah_kolom()`](https://yandiandiyana.github.io/tidyversindonesia/reference/rapi_pisah_kolom.md)
+  : Memisahkan satu kolom menjadi beberapa kolom
+- [`rapi_pivot_melebar()`](https://yandiandiyana.github.io/tidyversindonesia/reference/rapi_pivot_melebar.md)
+  : Merapikan data menjadi format melebar (menambah kolom)
+- [`rapi_pivot_memanjang()`](https://yandiandiyana.github.io/tidyversindonesia/reference/rapi_pivot_memanjang.md)
+  : Merapikan data menjadi format memanjang (menambah baris)
+- [`tidyversindonesia-package`](https://yandiandiyana.github.io/tidyversindonesia/reference/tidyversindonesia.md)
+  [`tidyversindonesia`](https://yandiandiyana.github.io/tidyversindonesia/reference/tidyversindonesia.md)
+  : Paket tidyverse versi Bahasa Indonesia
+- [`transformasi_distingsi()`](https://yandiandiyana.github.io/tidyversindonesia/reference/transformasi_distingsi.md)
+  : Memilih hanya baris berbeda (distingsi) tanpa duplikat
+- [`transformasi_faktor_menurun()`](https://yandiandiyana.github.io/tidyversindonesia/reference/transformasi_faktor_menurun.md)
+  : Mengurutkan faktor berdasarkan frekuensi kemunculan
+- [`transformasi_filter()`](https://yandiandiyana.github.io/tidyversindonesia/reference/transformasi_filter.md)
+  : Menyaring baris berdasarkan kondisi tertentu
+- [`transformasi_kelompok_berdasarkan()`](https://yandiandiyana.github.io/tidyversindonesia/reference/transformasi_kelompok_berdasarkan.md)
+  : Mengelompokkan data berdasarkan kolom tertentu
+- [`transformasi_kelompok_hapus()`](https://yandiandiyana.github.io/tidyversindonesia/reference/transformasi_kelompok_hapus.md)
+  : Melepas pengelompokan dari data
+- [`transformasi_mutasi()`](https://yandiandiyana.github.io/tidyversindonesia/reference/transformasi_mutasi.md)
+  : Membuat atau mengubah kolom dalam data
+- [`transformasi_potong()`](https://yandiandiyana.github.io/tidyversindonesia/reference/transformasi_potong.md)
+  : Memotong baris data berdasarkan indeks
+- [`transformasi_potong_acak()`](https://yandiandiyana.github.io/tidyversindonesia/reference/transformasi_potong_acak.md)
+  : Memotong baris secara acak
+- [`transformasi_potong_ekor()`](https://yandiandiyana.github.io/tidyversindonesia/reference/transformasi_potong_ekor.md)
+  : Memotong baris bagian akhir (ekor)
+- [`transformasi_potong_kepala()`](https://yandiandiyana.github.io/tidyversindonesia/reference/transformasi_potong_kepala.md)
+  : Memotong baris bagian awal (kepala)
+- [`transformasi_potong_maksimum()`](https://yandiandiyana.github.io/tidyversindonesia/reference/transformasi_potong_maksimum.md)
+  : Memotong baris berdasarkan nilai maksimum kolom
+- [`transformasi_potong_minimum()`](https://yandiandiyana.github.io/tidyversindonesia/reference/transformasi_potong_minimum.md)
+  : Memotong baris berdasarkan nilai minimum kolom
+- [`transformasi_relokasi()`](https://yandiandiyana.github.io/tidyversindonesia/reference/transformasi_relokasi.md)
+  : Relokasi kolom dalam data
+- [`transformasi_seleksi()`](https://yandiandiyana.github.io/tidyversindonesia/reference/transformasi_seleksi.md)
+  : Memilih kolom tertentu dari data
+- [`transformasi_statistik_ringkas()`](https://yandiandiyana.github.io/tidyversindonesia/reference/transformasi_statistik_ringkas.md)
+  : Merangkum data menjadi nilai statistik ringkas
+- [`transformasi_urutkan()`](https://yandiandiyana.github.io/tidyversindonesia/reference/transformasi_urutkan.md)
+  : Mengurutkan baris dalam data
+- [`visualisasi_ggplot()`](https://yandiandiyana.github.io/tidyversindonesia/reference/visualisasi_ggplot.md)
+  : Membuat grafik/plot dari ggplot
+- [`visualisasi_ggplot_simpan()`](https://yandiandiyana.github.io/tidyversindonesia/reference/visualisasi_ggplot_simpan.md)
+  : Menyimpan visualisasi ke file
+- [`visualisasi_ggplot_terakhir()`](https://yandiandiyana.github.io/tidyversindonesia/reference/visualisasi_ggplot_terakhir.md)
+  : Menampilkan plot ggplot terakhir
