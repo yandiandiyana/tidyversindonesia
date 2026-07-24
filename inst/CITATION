@@ -1,0 +1,29 @@
+desc <- utils::packageDescription("tidyversindonesia")
+
+citHeader(
+  "Apabila menggunakan paket tidyversindonesia dalam publikasi, mohon gunakan sitasi berikut:"
+)
+
+bibentry(
+  bibtype = "Manual",
+
+  title = paste("tidyversindonesia:", desc$Title),
+
+  author = person(
+    given = "Yandi",
+    family = "Andiyana"
+  ),
+
+  year = "2026",
+
+  note = paste("Versi paket R", desc$Version),
+
+  url = desc$URL,
+
+  textVersion = paste(
+    "Yandi Andiyana (2026).",
+    paste0("tidyversindonesia: ", desc$Title, "."),
+    paste0("Versi paket R ", desc$Version, "."),
+    desc$URL
+  )
+)

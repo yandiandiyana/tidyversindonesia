@@ -1,17 +1,19 @@
 Package: tidyversindonesia
 Type: Package
-Title: A Learning Bridge to the Tidyverse for Indonesia
-Version: 0.1.0
-Authors@R: 
-    person("Yandi", "Andiyana", 
-           email = "yandi.andiyana@gmail.com", 
+Title: Indonesian Version of 'tidyverse' Functions
+Version: 0.1.3
+Date: 2026-07-24
+Authors@R:
+    person("Yandi", "Andiyana",
+           email = "tidyversindonesia@gmail.com",
            role = c("aut", "cre"))
-Description: 
-    Provides Tidyverse functions with Indonesian-language names to help learners 
-    in Indonesia grasp data science concepts more intuitively. It serves as an 
-    educational bridge built upon the Tidyverse data-science workflow 
-    (import, tidy, transform, visualize, model, and communicate). Once mastered, 
-    users can easily transition to the original Tidyverse packages.
+Description: Provides Indonesian counterparts to core 'tidyverse'
+    functions to help learners understand data science with R more
+    intuitively. The package follows the core workflow introduced in
+    'R for Data Science' (2nd edition), covering data import,
+    tidying, transformation, and visualization. It serves as an
+    educational bridge to the 'tidyverse' ecosystem, helping users
+    gradually transition to the standard 'tidyverse' functions.
 License: MIT + file LICENSE
 Encoding: UTF-8
 Depends: R (>= 4.1)
@@ -22,10 +24,15 @@ Imports:
     forcats,
     tidyr,
     readxl,
-    rstudioapi
-Suggests: 
+    rstudioapi,
+    tibble,
+    tidyselect,
+    rlang,
+    writexl
+Suggests:
     knitr,
     rmarkdown
+URL: https://github.com/yandiandiyana/tidyversindonesia
 RoxygenNote: 7.3.3
 Language: en
 LazyData: true

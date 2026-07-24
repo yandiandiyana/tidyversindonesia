@@ -1,0 +1,18 @@
+url: https://yandiandiyana.github.io/tidyversindonesia
+
+template:
+  bootstrap: 5
+
+home:
+  title: "tidyversindonesia"
+  description: "Paket tidyverse versi Bahasa Indonesia"
+
+navbar:
+  structure:
+    left:
+      - home
+      - reference
+      - articles
+      - news
+    right:
+      - github

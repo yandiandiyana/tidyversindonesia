@@ -1,92 +1,126 @@
+# tidyversindonesia
 
-# tidyversindonesia 🇮🇩
+## Paket tidyverse versi Bahasa Indonesia
 
-## Jembatan Belajar Tidyverse versi Bahasa Indonesia 🤝
+`tidyversindonesia` menyediakan padanan fungsi inti **tidyverse** dalam Bahasa Indonesia sebagai jembatan untuk mempelajari sains data menggunakan bahasa pemrograman R.
 
-`tidyversindonesia` membantu pemula R memahami data science tanpa
-hambatan bahasa teknis. Selain menyediakan **nama fungsi versi Bahasa
-Indonesia** untuk Tidyverse, package ini juga menggunakan model proses
-data science R4DS:
+Paket ini mengikuti empat tahap utama alur kerja yang diperkenalkan dalam *R for Data Science* (edisi ke-2):
 
-> **I M P O R T → T I D Y → T R A N S F O R M → V I S U A L I Z E → M O
-> D E L → C O M M U N I C A T E**
+> **Impor → Rapi → Transformasi → Visualisasi**
 
-yang diterjemahkan dan menjadi awalan nama fungsi: \> **Impor → Rapi →
-Transformasi → Visualisasi → Model → Komunikasi**
+Dengan menggunakan nama fungsi dan contoh berbahasa Indonesia, `tidyversindonesia` membantu pengguna memahami konsep-konsep dasar *tidyverse* sebelum beralih ke fungsi-fungsi standar dalam ekosistem *tidyverse*.
 
-------------------------------------------------------------------------
-
-## Fitur Utama ✨
-
-| Tahap | Tidyversindonesia | Tujuan | Tidyverse |
-|----|----|----|----|
-| 1\. Import | `impor_baca_excel()` | Membaca data dari Excel | `readxl::read_excel()` |
-| 2\. Tidy | `rapi_pivot_memanjang()` | Merapikan data format wide → long | `tidyr::pivot_longer()` |
-| 3\. Transform | `transformasi_pilih()` | Memilih kolom untuk analisis | `dplyr::select()` |
-| 4\. Visualize | `visualisasi_ggplot()` | Membuat grafik cepat | `ggplot(data) + geom_*` |
-| 5\. Model | `model_regresi()` | Regresi linear sederhana | `lm()` + `broom::tidy()` |
-| 6\. Communicate | (coming soon) | Output narasi otomatis | `gt`, `report`, `quarto` |
-
-> pendekatan ini mempermudah belajar, bukan mengganti bahasa R dan
-> Tidyverse selamanya.  
-> Tujuan akhir tetap: **menguasai Tidyverse**.
-
-------------------------------------------------------------------------
+---
 
 ## Instalasi
 
-``` r
-install.packages("remotes") # kalau belum ada
+Install paket dari GitHub menggunakan `remotes`:
+
+```r
+install.packages("remotes")
+
 remotes::install_github("yandiandiyana/tidyversindonesia")
+```
+
+Kemudian muat paket:
+
+```r
 library(tidyversindonesia)
 ```
 
-------------------------------------------------------------------------
+---
 
-## Contoh Workflow Lengkap 🌱
+## Contoh Penggunaan
 
-``` r
-data <- impor_baca_excel("data/belajar.xlsx")
+Melihat data penguin yang telah diterjemahkan ke dalam Bahasa Indonesia:
 
-data_rapi <- rapi_pivot_memanjang(
-  data,
-  kolom = c(tinggi, berat),
-  nama = "variabel",
-  nilai = "angka"
-)
-
-data_pilih <- transformasi_pilih(data_rapi, variabel, angka, spesies)
-
-visualisasi_ggplot(
-  data_pilih,
-  estetika(x = angka, y = variabel, color = spesies)
-) +
-  geometrik_titik()
-
-hasil_model <- model_regresi(angka ~ variabel, data = data_pilih)
-hasil_model
+```r
+data_lihat_kepala(penguin)
 ```
 
-Output model rapi seperti `broom::tidy()`.
+Membuat grafik sebar (scatter plot):
 
-------------------------------------------------------------------------
+```r
+visualisasi_ggplot(
+  penguin,
+  estetika(
+    x = panjang_sirip,
+    y = massa_tubuh
+  )
+) +
+  grafik_geometrik_titik()
+```
 
-## Kontribusi & Diskusi 🤗
+---
 
-Ayo berkembang bersama — semua level boleh ikut!
+## Alur Kerja
 
-- Buka Issue →
-  <https://github.com/yandiandiyana/tidyversindonesia/issues>
-- Diskusi nama fungsi →
-  <https://github.com/yandiandiyana/tidyversindonesia/discussions>
-- Pull Request untuk kontribusi kode & dokumentasi
+Paket ini dikelompokkan mengikuti empat tahapan utama analisis data.
 
-------------------------------------------------------------------------
+| Tahap | Contoh fungsi |
+|:------|:--------------|
+| **Impor** | `impor_baca_csv()`, `impor_baca_excel()` |
+| **Rapi** | `rapi_pivot_memanjang()`, `rapi_pivot_melebar()` |
+| **Transformasi** | `transformasi_filter()`, `transformasi_seleksi()`, `transformasi_mutasi()` |
+| **Visualisasi** | `visualisasi_ggplot()`, `grafik_geometrik_titik()` |
+
+---
+
+## Data Contoh
+
+`tidyversindonesia` menyediakan data **penguin**, yaitu adaptasi berbahasa Indonesia dari dataset `penguins` pada paket `datasets`.
+
+Nama variabel telah diterjemahkan agar lebih mudah dipahami ketika mempelajari manipulasi data dan visualisasi menggunakan R.
+
+| Nama variabel |
+|:--------------|
+| `spesies` |
+| `pulau` |
+| `panjang_paruh` |
+| `tebal_paruh` |
+| `panjang_sirip` |
+| `massa_tubuh` |
+| `jenis_kelamin` |
+| `tahun` |
+
+---
+
+## Filosofi
+
+`tidyversindonesia` bukan pengganti **tidyverse**.
+
+Paket ini dirancang sebagai sarana pembelajaran untuk membantu pengguna memahami konsep-konsep dasar sains data menggunakan R sebelum beralih ke fungsi-fungsi standar dalam ekosistem **tidyverse**.
+
+---
+
+## Kontribusi
+
+Kontribusi, laporan bug, maupun usulan pengembangan sangat diterima.
+
+Silakan membuat *Issue* atau *Pull Request* melalui repositori GitHub:
+
+https://github.com/yandiandiyana/tidyversindonesia
+
+---
+
+## Sitasi
+
+Apabila **tidyversindonesia** digunakan dalam materi pembelajaran, pelatihan, publikasi, atau penelitian, mohon sertakan sitasi terhadap paket ini.
+
+```r
+citation("tidyversindonesia")
+```
+
+Setelah paket tersedia di CRAN, informasi sitasi akan diperbarui secara otomatis sesuai versi yang dipublikasikan.
+
+---
 
 ## Penulis
 
-**Yandi Andiyana**  
-Instagram: **@yandiandiyana**  
-GitHub: <https://github.com/yandiandiyana>
+**Yandi Andiyana**
 
-> Semoga package menjadi jalan kebaikan kecil menuju Tidyverse ✨🙏
+GitHub:
+https://github.com/yandiandiyana
+
+Instagram:
+@tidyversindonesia
