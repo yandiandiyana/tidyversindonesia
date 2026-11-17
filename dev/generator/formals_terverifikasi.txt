@@ -1,0 +1,120 @@
+# Sumber: dev/audit-formals.R dijalankan di komputer pengguna, 24 Oktober 2026.
+# R 4.5.0 (Windows). ggplot2 4.0.3, dplyr 1.2.1, tidyr 1.3.2, readr 2.2.0,
+# tibble 3.3.1, tidyselect 1.2.1, forcats 1.0.1, ggthemes 6.0.0, janitor 2.2.1,
+# arrow 25.0.1, palmerpenguins 0.1.1, nycflights13 1.0.2.
+# Format: paket::fungsi: formal (urutan sebenarnya). Baris berawalan # diabaikan.
+ggplot2::ggplot: data mapping ... environment
+ggplot2::last_plot: 
+ggplot2::get_last_plot: 
+ggplot2::ggsave: filename plot device path scale width height units dpi limitsize bg create.dir ...
+ggplot2::aes: x y ...
+ggplot2::labs: ... title subtitle caption tag dictionary alt alt_insight
+ggplot2::geom_point: mapping data stat position ... na.rm show.legend inherit.aes
+ggplot2::geom_line: mapping data stat position ... orientation arrow arrow.fill lineend linejoin linemitre na.rm show.legend inherit.aes
+ggplot2::geom_bar: mapping data stat position ... just lineend linejoin na.rm show.legend inherit.aes
+ggplot2::geom_histogram: mapping data stat position ... binwidth bins orientation lineend linejoin na.rm show.legend inherit.aes
+ggplot2::geom_density: mapping data stat position ... outline.type lineend linejoin linemitre na.rm show.legend inherit.aes
+ggplot2::geom_boxplot: mapping data stat position ... outliers outlier.colour outlier.color outlier.fill outlier.shape outlier.size outlier.stroke outlier.alpha whisker.colour whisker.color whisker.linetype whisker.linewidth staple.colour staple.color staple.linetype staple.linewidth median.colour median.color median.linetype median.linewidth box.colour box.color box.linetype box.linewidth notch notchwidth staplewidth varwidth na.rm orientation show.legend inherit.aes
+ggplot2::geom_smooth: mapping data stat position ... method formula se na.rm orientation show.legend inherit.aes
+ggplot2::geom_hex: mapping data stat position ... lineend linejoin linemitre na.rm show.legend inherit.aes
+ggplot2::facet_wrap: facets nrow ncol scales space shrink labeller as.table switch drop dir strip.position axes axis.labels
+ggplot2::facet_grid: rows cols scales space shrink labeller as.table switch drop margins axes axis.labels facets
+ggplot2::scale_x_continuous: name breaks minor_breaks n.breaks labels limits expand oob na.value transform trans guide position sec.axis
+ggplot2::scale_y_reverse: ...
+ggplot2::theme_grey: base_size base_family header_family base_line_size base_rect_size ink paper accent
+ggplot2::theme_gray: base_size base_family header_family base_line_size base_rect_size ink paper accent
+ggplot2::theme_bw: base_size base_family header_family base_line_size base_rect_size ink paper accent
+ggplot2::theme_linedraw: base_size base_family header_family base_line_size base_rect_size ink paper accent
+ggplot2::theme_light: base_size base_family header_family base_line_size base_rect_size ink paper accent
+ggplot2::theme_dark: base_size base_family header_family base_line_size base_rect_size ink paper accent
+ggplot2::theme_minimal: base_size base_family header_family base_line_size base_rect_size ink paper accent
+ggplot2::theme_classic: base_size base_family header_family base_line_size base_rect_size ink paper accent
+ggplot2::theme_void: base_size base_family header_family base_line_size base_rect_size ink paper accent
+ggplot2::theme_test: base_size base_family header_family base_line_size base_rect_size ink paper accent
+ggthemes::scale_color_colorblind: black ...
+ggthemes::scale_fill_colorblind: black ...
+dplyr::filter: .data ... .by .preserve
+dplyr::arrange: .data ... .by_group
+dplyr::desc: x
+dplyr::distinct: .data ... .keep_all
+dplyr::count: x ... wt sort name
+dplyr::mutate: .data ...
+dplyr::select: .data ...
+dplyr::rename: .data ...
+dplyr::relocate: .data ... .before .after
+dplyr::pull: .data var name ...
+dplyr::group_by: .data ... .add .drop
+dplyr::ungroup: x ...
+dplyr::summarise: .data ... .by .groups
+dplyr::slice: .data ... .by .preserve
+dplyr::slice_head: .data ... n prop by
+dplyr::slice_tail: .data ... n prop by
+dplyr::slice_min: .data order_by ... n prop by with_ties na_rm
+dplyr::slice_max: .data order_by ... n prop by with_ties na_rm
+dplyr::slice_sample: .data ... n prop by weight_by replace
+dplyr::if_else: condition true false missing ... ptype size
+dplyr::n: 
+dplyr::glimpse: x width ...
+tidyselect::starts_with: match ignore.case vars
+tidyselect::ends_with: match ignore.case vars
+tidyselect::contains: match ignore.case vars
+tidyselect::matches: match ignore.case perl vars
+tidyselect::num_range: prefix range suffix width vars
+tidyselect::everything: vars
+tidyselect::where: fn
+tidyselect::any_of: x ... vars
+tidyselect::all_of: x
+tidyselect::last_col: offset vars
+tidyr::pivot_longer: data cols ... cols_vary names_to names_prefix names_sep names_pattern names_ptypes names_transform names_repair values_to values_drop_na values_ptypes values_transform
+tidyr::pivot_wider: data ... id_cols id_expand names_from names_prefix names_sep names_glue names_sort names_vary names_expand names_repair values_from values_fill values_fn unused_fn
+readr::read_csv: file col_names col_types col_select id locale na quoted_na quote comment trim_ws skip n_max guess_max name_repair num_threads progress show_col_types skip_empty_rows lazy
+readr::read_csv2: file col_names col_types col_select id locale na quoted_na quote comment trim_ws skip n_max guess_max progress name_repair num_threads show_col_types skip_empty_rows lazy
+readr::read_tsv: file col_names col_types col_select id locale na quoted_na quote comment trim_ws skip n_max guess_max progress name_repair num_threads show_col_types skip_empty_rows lazy
+readr::read_delim: file delim quote escape_backslash escape_double col_names col_types col_select id locale na quoted_na comment trim_ws skip n_max guess_max name_repair num_threads progress show_col_types skip_empty_rows lazy
+readr::read_fwf: file col_positions col_types col_select id locale na comment trim_ws skip n_max guess_max progress name_repair num_threads show_col_types lazy skip_empty_rows
+readr::read_table: file col_names col_types locale na skip n_max guess_max progress comment show_col_types skip_empty_rows
+readr::read_log: file col_names col_types trim_ws skip n_max show_col_types progress
+readr::fwf_widths: widths col_names
+readr::fwf_positions: start end col_names
+readr::cols: ... .default
+readr::cols_only: ...
+readr::col_logical: 
+readr::col_double: 
+readr::col_integer: 
+readr::col_character: 
+readr::col_factor: levels ordered include_na
+readr::col_date: format
+readr::col_datetime: format
+readr::col_number: 
+readr::col_skip: 
+readr::problems: x
+readr::spec: x
+readr::parse_number: x na locale trim_ws
+readr::write_csv: x file na append col_names quote escape eol num_threads progress
+readr::write_tsv: x file na append col_names quote escape eol num_threads progress
+readr::read_rds: file refhook
+readr::write_rds: x file compress version refhook text ...
+tibble::tibble: ... .rows .name_repair
+tibble::tribble: ...
+forcats::fct_infreq: f w ordered
+janitor::clean_names: dat ...
+arrow::read_parquet: file col_select as_data_frame props mmap ...
+arrow::write_parquet: x sink chunk_size version compression compression_level use_dictionary write_statistics data_page_size use_deprecated_int96_timestamps coerce_timestamps allow_truncated_timestamps
+base::mean: x ...
+base::sum: ... na.rm
+base::sin: x
+base::is.na: x
+base::seq: ...
+base::length: x
+base::factor: x levels labels exclude ordered nmax
+base::list.files: path pattern all.files full.names recursive ignore.case include.dirs no..
+base::getwd: 
+base::setwd: dir
+base::dput: x file control
+utils::head: x ...
+utils::tail: x ...
+utils::View: x title
+# stats::rnorm BELUM diaudit di komputer pengguna (dari ingatan); diperiksa oleh uji drift.
+stats::rnorm: n mean sd
+# Metode S3 (formal): mean.default: x trim na.rm ... | seq.default: from to by length.out along.with ... | head/tail.default: x n ... (tail juga keepnums addrownums)
+# Generik dplyr: hanya mutate() yang formalnya (.data, ...); .by .keep .before .after adalah formal metodenya.

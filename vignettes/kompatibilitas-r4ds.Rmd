@@ -1,0 +1,312 @@
+---
+title: "Kompatibilitas dengan R4DS"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Kompatibilitas dengan R4DS}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(collapse = TRUE, comment = "#>", fig.width = 6.5, fig.height = 4)
+```
+
+Panduan ini mencatat setiap contoh dan latihan berkode di delapan bab Bagian I buku *R for Data Science* edisi ke-2 (The Whole Game), dan bagaimana mengerjakannya dengan paket ini. Setiap contoh telah dijalankan dalam bentuk asli dan bentuk lokal, lalu hasilnya dibandingkan oleh pengujian otomatis paket.
+
+Tiap contoh dan latihan dikelompokkan ke satu kelas. Uji yang menjalankannya ada di `tests/testthat/test-r4ds-babNN.R`: contoh dijalankan dalam bentuk asli dan bentuk lokal, lalu hasilnya dibandingkan.
+
+| Kelas | Arti |
+|---|---|
+| A | Didukung langsung |
+| B | Didukung setelah lokalisasi sistematis |
+| C | Perlu penyesuaian terdokumentasi |
+| D | Di luar lingkup |
+
+## Bab 1. Data visualization
+
+| Bagian | Contoh buku | Padanan lokal | Kelas | Uji | Catatan |
+|---|---|---|---|---|---|
+| 1.1.1 | `library(tidyverse)` | `library(tidyversindonesia)` | C | - | Tidyverse tidak dimuat otomatis; fungsi buku tersedia dengan nama lokal, dan paket asli tetap dapat dimuat berdampingan. |
+| 1.1.1 | `install.packages(...)` | tidak berubah | A | - |  |
+| 1.1.1 | `library(palmerpenguins)` | tidak diperlukan; pakai `penguin` | C | - | Data tersedia sebagai `penguin`. `library(ggthemes)` tetap perlu dipasang untuk `grf_skalawarna_butawarna()`. |
+| 1.2.1 | `penguins` (cetak data) | `penguin` | B | 1.2.1 | Nama kolom dan nilai `jenis_kelamin` (`jantan`/`betina`) diterjemahkan. |
+| 1.2.1 | `glimpse(penguins)` | `dtr_sekilas(penguin)` | B | 1.2.1 |  |
+| 1.2.1 | `View(penguins)` | `dtr_lihat(penguin)` | B | - | Interaktif; tidak diuji otomatis (pemetaan fungsi diuji). |
+| 1.2.1 | `?penguins` | `?penguin` | B | - | Dokumentasi berbahasa Indonesia, memuat nama kolom asli. |
+| 1.2.2 | gambar tujuan akhir (tanpa kode) | - | A | - |  |
+| 1.2.3 | `ggplot(data = penguins)` | `vis_ggplot(data = penguin)` | B | 1.2.3 |  |
+| 1.2.3 | `ggplot(data = ..., mapping = aes(x = ..., y = ...))` | `vis_ggplot(data = ..., pemetaan = grf_estetika(x = ..., y = ...))` | B | 1.2.3 | Argumen `mapping` menjadi `pemetaan`. |
+| 1.2.3 | `+ geom_point()` | `+ grf_geometrik_titik()` | B | 1.2.3 |  |
+| 1.2.3 | peringatan "Removed 2 rows containing missing values" | peringatan yang sama | C | - | Pesan galat dan peringatan dari ggplot2 tetap berbahasa Inggris (prinsip kesetiaan perilaku). |
+| 1.2.4 | `aes(color = species)` | `grf_estetika(warna = spesies)` | B | 1.2.4 |  |
+| 1.2.4 | `geom_smooth(method = "lm")` | `grf_geometrik_haluskan(metode = "lm")` | B | 1.2.4 | Nilai `"lm"` tidak diubah. |
+| 1.2.4 | `geom_point(mapping = aes(color = species))` | `grf_geometrik_titik(pemetaan = grf_estetika(warna = spesies))` | B | 1.2.4 |  |
+| 1.2.4 | `aes(color = species, shape = species)` | `grf_estetika(warna = spesies, bentuk = spesies)` | B | 1.2.4 |  |
+| 1.2.4 | `labs(title, subtitle, x, y, color, shape)` | `grf_label(judul, subjudul, sumbu_x, sumbu_y, warna, bentuk)` | B | 1.2.4 (label) |  |
+| 1.2.4 | `scale_color_colorblind()` | `grf_skalawarna_butawarna()` | B | 1.2.4 (label) | Memerlukan paket ggthemes (opsional). |
+| 1.2.5 | Latihan 1 (jumlah baris dan kolom) | `penguin`, `dtr_sekilas(penguin)` | A | 1.2.1 | Jawaban berupa angka; tidak ada kode khusus. |
+| 1.2.5 | Latihan 2 (`?penguins`, arti `bill_depth_mm`) | `?penguin`, kolom `kedalaman_paruh_mm` | B | - |  |
+| 1.2.5 | Latihan 3 (sebar `bill_depth_mm` terhadap `bill_length_mm`) | sama dengan `kedalaman_paruh_mm` dan `panjang_paruh_mm` | B | 1.2.5 (3) |  |
+| 1.2.5 | Latihan 4 (`species` terhadap `bill_depth_mm`) | `spesies` terhadap `kedalaman_paruh_mm` | B | 1.2.5 (4) |  |
+| 1.2.5 | Latihan 5 (`geom_point()` tanpa pemetaan menghasilkan galat) | galat yang sama | C | 1.2.5 (5) | Pesan galat tetap berbahasa Inggris. |
+| 1.2.5 | Latihan 6 (`na.rm = TRUE`) | `buang_na = TRUE` | B | 1.2.5 (6) |  |
+| 1.2.5 | Latihan 7 (`labs(caption = ...)`) | `grf_label(keterangan = ...)` | B | 1.2.5 (7) |  |
+| 1.2.5 | Latihan 8 (warna menurut `bill_depth_mm` pada geom) | `warna = kedalaman_paruh_mm` | B | 1.2.5 (8) |  |
+| 1.2.5 | Latihan 9 (`geom_smooth(se = FALSE)`) | `selang_kepercayaan = FALSE` | B | 1.2.5 (9) |  |
+| 1.2.5 | Latihan 10 (dua cara menulis plot yang sama) | dua cara yang sama dengan nama lokal | B | 1.2.5 (10) |  |
+| 1.3 | bentuk ringkas tanpa nama argumen | sama | B | 1.3 | Urutan argumen posisi dipertahankan. |
+| 1.3 | pipa `\|>` | tidak berubah | A | 1.3 |  |
+| 1.4.1 | `geom_bar()` | `grf_geometrik_batang()` | B | 1.4.1 |  |
+| 1.4.1 | `fct_infreq(species)` di dalam `aes()` | `frm_faktor_frekuensi(spesies)` | B | 1.4.1 | Memerlukan paket forcats (opsional). |
+| 1.4.2 | `geom_histogram(binwidth = 200)` | `grf_geometrik_histogram(lebar_bin = 200)` | B | 1.4.2 |  |
+| 1.4.2 | `geom_density()` | `grf_geometrik_densitas()` | B | 1.4.2 |  |
+| 1.4.3 | Latihan 1 (`aes(y = species)`) | `grf_estetika(y = spesies)` | B | 1.4.3 |  |
+| 1.4.3 | Latihan 2 (`color`, `fill` pada `geom_bar()`) | `warna`, `isian` | B | 1.4.3 |  |
+| 1.4.3 | Latihan 3 (`bins`) | `jumlah_bin` | B | 1.4.3 |  |
+| 1.4.3 | Latihan 4 (histogram `carat` pada `diamonds`) | `berlian`, `karat`, `lebar_bin` | B | 1.4.3 | Dataset `berlian`. |
+| 1.5.1 | `geom_boxplot()` | `grf_geometrik_boxplot()` | B | 1.5.1 |  |
+| 1.5.1 | `geom_density(linewidth = 0.75)` | `ketebalan_garis = 0.75` | B | 1.5.1 |  |
+| 1.5.1 | `alpha = 0.5`, `fill = species` | `alfa = 0.5`, `isian = spesies` | B | 1.5.1 |  |
+| 1.5.2 | `geom_bar()` bertumpuk; `position = "fill"` | `posisi = "fill"` | B | 1.5.2 | Nilai `"fill"` tidak diubah. |
+| 1.5.2 | `labs(y = "proportion")` | `grf_label(sumbu_y = "proporsi")` | B | 1.5.2 | Teks label boleh berbahasa apa pun. |
+| 1.5.3 | dua variabel numerik (sebar) | sama dengan 1.2 | B | 1.2 |  |
+| 1.5.4 | `shape = island` | `bentuk = pulau` | B | 1.5.4 |  |
+| 1.5.4 | `facet_wrap(~island)` | `grf_faset_bungkus(~pulau)` | B | 1.5.4 | Formula memakai nama kolom lokal. |
+| 1.5.5 | Latihan 1 (`mpg`, variabel kategorik dan numerik) | `mobil_mpg` | B | 1.5.5 (1-4) | Nilai `penggerak`, `bahan_bakar`, `kelas`, `transmisi` diterjemahkan. |
+| 1.5.5 | Latihan 2 (warna, ukuran, bentuk dari variabel numerik) | `warna`, `ukuran`, `bentuk` | B | 1.5.5 (1-4) |  |
+| 1.5.5 | Latihan 2 (variabel numerik ke `shape` menghasilkan galat) | galat yang sama | C | 1.5.5 (1-4) | Pesan galat tetap berbahasa Inggris. |
+| 1.5.5 | Latihan 3 (`linewidth` pada titik) | `ketebalan_garis` | B | 1.5.5 (1-4) |  |
+| 1.5.5 | Latihan 4 (satu variabel ke beberapa estetika) | sama | B | 1.5.5 (1-4) | Warna dan bentuk dapat berbeda karena nilai `penggerak` diterjemahkan; posisi titik sama. |
+| 1.5.5 | Latihan 5 (kedalaman dan panjang paruh, per spesies) | sama dengan nama lokal | B | 1.5.5 (5-7) |  |
+| 1.5.5 | Latihan 6 (dua legenda, `labs(color = ...)`) | `grf_label(warna = ...)` | B | 1.5.5 (5-7) |  |
+| 1.5.5 | Latihan 7 (dua diagram batang bertumpuk) | sama dengan nama lokal | B | 1.5.5 (5-7) |  |
+| 1.6 | `ggsave(filename = "penguin-plot.png")` | `vis_ggplot_simpan(nama_berkas = "penguin-plot.png")` | B | 1.6 | Berkas disimpan di direktori kerja. |
+| 1.6.1 | Latihan 1 (plot yang tersimpan adalah plot terakhir) | `vis_ggplot_simpan("mpg-plot.png")` | B | 1.6.1 |  |
+| 1.6.1 | Latihan 2 (ganti ekstensi menjadi `.pdf`) | `vis_ggplot_simpan("mpg-plot.pdf")` | B | 1.6.1 | Format ditentukan ekstensi, seperti fungsi asli. |
+| 1.7 | tanda `+` harus di akhir baris | sama | A | - | Aturan sintaks R. |
+| 1.7 | `?nama_fungsi` dan pesan galat | `?vis_ggplot` untuk fungsi lokal; pesan galat asli tetap Inggris | C | - |  |
+| 1.7 | mencari bantuan di Google atau Stack Overflow | - | D | - | Di luar cakupan paket (lihat panduan migrasi). |
+
+## Bab 2. Workflow: basics
+
+| Bagian | Contoh buku | Padanan lokal | Kelas | Uji | Catatan |
+|---|---|---|---|---|---|
+| 2.1 | aritmetika `1 / 200 * 30`, `(59 + 73 + 2) / 3` | tidak berubah | A | 2.1 | Operator R dasar tidak dibungkus. |
+| 2.1 | `sin(pi / 2)` | `dsr_sinus(pi / 2)` | B | 2.1 |  |
+| 2.1 | penugasan `x <- 3 * 4` | tidak berubah | A | 2.1 |  |
+| 2.1 | `c(2, 3, 5, 7, 11, 13)`, `primes * 2`, `primes - 1` | tidak berubah | A | 2.1 | `c()` sengaja tidak dibungkus (keputusan pengguna). |
+| 2.2 | komentar dengan `#` | tidak berubah | A | - |  |
+| 2.3 | aturan nama objek, `r_rocks <- 2^3` | tidak berubah | A | 2.3 |  |
+| 2.3 | `r_rock` dan `R_rocks` menghasilkan galat "object not found" | galat yang sama | A | 2.3 | Pesan galat R tetap berbahasa Inggris. |
+| 2.4 | `seq(from = 1, to = 10)` | `dsr_urutan(dari = 1, sampai = 10)` | B | 2.4 |  |
+| 2.4 | `seq(1, 10)` | `dsr_urutan(1, 10)` | B | 2.4 |  |
+| 2.4 | teks `x <- "hello world"` dan tanda kutip tak berpasangan | tidak berubah | A | - | Perilaku konsol R. |
+| 2.5 | Latihan 1 (galat karena karakter yang mirip, `my_varıable`) | galat yang sama | A | 2.5 (1) |  |
+| 2.5 | Latihan 2 (perbaiki salah ketik pada kode ggplot2) | `vis_ggplot`, `grf_geometrik_titik`, `grf_geometrik_haluskan` setelah diperbaiki | B | 2.5 (2) | Salah ketik nama argumen (`maping`, `dTA`) berperilaku sama pada asli dan lokal. Perbaikan harfiah masih galat (geom_smooth() kehilangan x dan y) pada keduanya; pemetaan harus dipindahkan ke `ggplot()`. |
+| 2.5 | Latihan 2 (pesan galat dan peringatan dari salah ketik) | pesan yang sama | C | 2.5 (2) | Pesan tetap berbahasa Inggris. |
+| 2.5 | Latihan 3 (pintasan papan ketik RStudio) | - | A | - | Tanpa kode. |
+| 2.5 | Latihan 4 (`ggsave(filename = "mpg-plot.png", plot = my_bar_plot)`) | `vis_ggplot_simpan(nama_berkas = "mpg-plot.png", plot = plot_batang)` | B | 2.5 (4) |  |
+| 2.6 | ringkasan bab | - | A | - |  |
+
+## Bab 3. Data transformation
+
+| Bagian | Contoh buku | Padanan lokal | Kelas | Uji | Catatan |
+|---|---|---|---|---|---|
+| 3.1.1 | `library(nycflights13)`, `library(tidyverse)` | `library(tidyversindonesia)` | C | - | `penerbangan` tersedia dari paket ini (dibuat dari nycflights13 saat dipakai). Tidak ada pesan benturan nama karena tidyverse tidak dimuat. |
+| 3.1.2 | `flights` (cetak) | `penerbangan` | B | 3.1.2 | Nama kolom diterjemahkan; nilai, satuan, dan urutan baris tidak diubah. |
+| 3.1.2 | `print(flights, width = Inf)` | `print(penerbangan, width = Inf)` | A | 3.1.2 |  |
+| 3.1.2 | `glimpse(flights)` | `dtr_sekilas(penerbangan)` | B | 3.1.2 |  |
+| 3.1.2 | `View(flights)` | `dtr_lihat(penerbangan)` | B | - | Interaktif; tidak diuji otomatis. |
+| 3.1.2 | `?flights` | `?penerbangan` | B | - | Dokumentasi berbahasa Indonesia memuat padanan kolom asli. |
+| 3.1.3 | contoh jalur pipa penerbangan ke IAH | `trn_filter`, `trn_gabung_kelompok`, `trn_statistik_ringkas`, `dsr_rerata` | B | 3.1.3 |  |
+| 3.2.1 | `filter(dep_delay > 120)` | `trn_filter(keterlambatan_berangkat > 120)` | B | 3.2.1 |  |
+| 3.2.1 | `filter(month == 1 & day == 1)`, `\|`, `%in%` | sama dengan nama kolom lokal | B | 3.2.1 | Operator tidak berubah. |
+| 3.2.1 | `filter(month == 1, day == 1)` (koma) | sama | B | 3.2.1 |  |
+| 3.2.1 | `jan1 <- flights \|> filter(...)` | sama | B | 3.2.1 |  |
+| 3.2.2 | `filter(month = 1)` (salah memakai `=`) | galat yang sama | C | 3.2.2 | Pesan galat dplyr tetap berbahasa Inggris. |
+| 3.2.2 | `filter(month == 1 \| 2)` | hasil sama (tanpa galat) | B | 3.2.2 |  |
+| 3.2.3 | `arrange(year, month, day, dep_time)` | `trn_urutkan(tahun, bulan, hari, waktu_berangkat)` | B | 3.2.3 |  |
+| 3.2.3 | `arrange(desc(dep_delay))` | `trn_urutkan(frm_turun(keterlambatan_berangkat))` | B | 3.2.3 | `desc()` menjadi `frm_turun()`. |
+| 3.2.4 | `distinct()`, `distinct(origin, dest)` | `trn_unik()`, `trn_unik(asal, tujuan)` | B | 3.2.4 |  |
+| 3.2.4 | `distinct(..., .keep_all = TRUE)` | `.simpan_semua = TRUE` | B | 3.2.4 |  |
+| 3.2.4 | `count(origin, dest, sort = TRUE)` | `trn_hitung(asal, tujuan, urut = TRUE)` | B | 3.2.4 |  |
+| 3.2.5 | Latihan 1a-1f (kondisi penyaringan) | sama dengan nama kolom lokal | B | 3.2.5 (1) |  |
+| 3.2.5 | Latihan 2 (urutan keterlambatan dan waktu berangkat) | sama | B | 3.2.5 (2-6) |  |
+| 3.2.5 | Latihan 3 (`arrange(desc(distance / air_time))`) | `trn_urutkan(frm_turun(jarak / waktu_terbang))` | B | 3.2.5 (2-6) |  |
+| 3.2.5 | Latihan 4 (penerbangan setiap hari 2013) | `trn_unik(tahun, bulan, hari)`, 365 baris | B | 3.2.5 (2-6) |  |
+| 3.2.5 | Latihan 5 (jarak terjauh dan terdekat) | sama | B | 3.2.5 (2-6) |  |
+| 3.2.5 | Latihan 6 (urutan `filter` dan `arrange`) | sama | B | 3.2.5 (2-6) |  |
+| 3.3.1 | `mutate(gain = ..., speed = ...)` | `trn_mutasi(gain = ..., kecepatan = ...)` | B | 3.3.1 | Nama kolom buatan pengguna tidak pernah diterjemahkan. |
+| 3.3.1 | `.before = 1`, `.after = day` | `.sebelum = 1`, `.setelah = hari` | B | 3.3.1 |  |
+| 3.3.1 | `.keep = "used"` | `.simpan = "used"` | B | 3.3.1 |  |
+| 3.3.2 | `select(year, month, day)`, `year:day`, `!year:day` | `trn_pilih(tahun, bulan, hari)`, `tahun:hari`, `!tahun:hari` | B | 3.3.2 |  |
+| 3.3.2 | `select(where(is.character))` | `trn_pilih(frm_di_mana(is.character))` | B | 3.3.2 |  |
+| 3.3.2 | `starts_with("dep")`, `starts_with("arr")`, `ends_with()` | `frm_cocok(...)`, `frm_salah_satu(...)` | C | 3.3.2 (pembantu) | Teknik awalan buku tidak langsung berlaku: dalam bahasa Indonesia kata pengubah ada di belakang (`waktu_berangkat`, bukan `berangkat_waktu`). `frm_diakhiri("_tiba")` juga menjaring kolom terjadwal. Gunakan `frm_cocok()` atau `frm_salah_satu()`. |
+| 3.3.2 | `contains("TIME")`, `num_range()` | `frm_memuat("WAKTU")`, `frm_rentang_angka()` | B | 3.3.2 (pembantu) | Menjaring kolom yang sama menurut posisi. |
+| 3.3.2 | `select(tail_num = tailnum)` | `trn_pilih(nomor_ekor_baru = nomor_ekor)` | B | 3.3.2 |  |
+| 3.3.3 | `rename(tail_num = tailnum)` | `trn_ubah_nama(nomor_ekor_baru = nomor_ekor)` | B | 3.3.3-3.3.4 |  |
+| 3.3.3 | `janitor::clean_names()` | `trn_rapikan_nama()` | B | 3.3.3 (janitor) | Memerlukan paket janitor (opsional). |
+| 3.3.4 | `relocate(time_hour, air_time)`, `.after = time_hour` | `trn_pindah(waktu_jam, waktu_terbang)`, `.setelah = waktu_jam` | B | 3.3.3-3.3.4 |  |
+| 3.3.4 | `relocate(starts_with("arr"), .before = dep_time)` | `trn_pindah(frm_salah_satu(c("waktu_tiba", "keterlambatan_tiba")), .sebelum = waktu_berangkat)` | C | 3.3.3-3.3.4 | Alasan sama dengan `starts_with()` di atas. |
+| 3.3.5 | Latihan 1 (`dep_time`, `sched_dep_time`, `dep_delay`) | sama dengan nama kolom lokal | B | 3.3.5 |  |
+| 3.3.5 | Latihan 2 (cara memilih empat kolom) | `frm_cocok("^(waktu\|keterlambatan)_(berangkat\|tiba)$")` | C | 3.3.5 | Penyesuaian teknik awalan, lihat di atas. |
+| 3.3.5 | Latihan 3 (menyebut kolom berulang) | sama | B | 3.3.5 |  |
+| 3.3.5 | Latihan 4 (`any_of(variables)`) | `frm_salah_satu(variabel)` | B | 3.3.5 | Vektor berisi nama kolom lokal. |
+| 3.3.5 | Latihan 5 (`contains("TIME")`) | `frm_memuat("WAKTU")` | B | 3.3.2 (pembantu) | Hasil sama; `abaikan_kapital = FALSE` menjaring nol kolom, seperti aslinya. |
+| 3.3.5 | Latihan 6 (`rename` lalu `relocate`) | `trn_ubah_nama` lalu `trn_pindah` | B | 3.3.5 |  |
+| 3.3.5 | Latihan 7 (`select(tailnum) \|> arrange(arr_delay)` galat) | galat yang sama | C | 3.3.5 | Pesan galat tetap berbahasa Inggris. |
+| 3.4 | jalur pipa panjang, bentuk bersarang, objek antara | padanan lokal | B | 3.4 |  |
+| 3.4 | pipa magrittr `%>%` | tidak berubah | A | 3.4 (magrittr) | Berfungsi dengan fungsi lokal. |
+| 3.4 | `mtcars %>% group_by(cyl) %>% summarize(n = n())` (catatan samping) | `mobil %>% trn_gabung_kelompok(silinder) %>% trn_statistik_ringkas(n = frm_jumlah())` | B | 3.4 (mtcars) | Memakai dataset `mobil` (dari `mtcars`); nama baris menjadi kolom `mobil`. |
+| 3.5.1 | `group_by(month)` | `trn_gabung_kelompok(bulan)` | B | 3.5.1-3.5.2 |  |
+| 3.5.2 | `summarize(avg_delay = mean(dep_delay))` (NA) | `dsr_rerata(keterlambatan_berangkat)` | B | 3.5.1-3.5.2 |  |
+| 3.5.2 | `mean(..., na.rm = TRUE)`, `n()` | `dsr_rerata(..., buang_na = TRUE)`, `frm_jumlah()` | B | 3.5.1-3.5.2 |  |
+| 3.5.3 | `slice_max(arr_delay, n = 1)`, `with_ties = FALSE` | `trn_iris_maks(..., n = 1)`, `dengan_seri = FALSE` | B | 3.5.3 | Hasil 108 dan 105 baris seperti di buku. |
+| 3.5.3 | `slice_head`, `slice_tail`, `slice_min`, `slice_sample`, `prop` | `trn_iris_kepala`, `_ekor`, `_min`, `_acak`, `proporsi` | B | 3.5.3 |  |
+| 3.5.4 | pengelompokan ganda dan pesan "has regrouped the output" | pesan yang sama | C | 3.5.4 | Pesan dplyr tetap berbahasa Inggris dan sama pada versi lokal. dplyr dapat membatasi seberapa sering pesan ini tampil, sehingga uji membandingkan pesan, bukan mengharapkan teks tertentu. |
+| 3.5.4 | `.groups = "drop_last"`, `"drop"`, `"keep"` | `.hasil_kelompok = ...` | B | 3.5.4 |  |
+| 3.5.5 | `ungroup()`, ringkasan tanpa kelompok | `trn_lepas_kelompok()` | B | 3.5.5-3.5.6 |  |
+| 3.5.6 | `summarize(..., .by = month)`, `.by = c(origin, dest)` | `.berdasarkan = bulan`, `c(asal, tujuan)` | B | 3.5.5-3.5.6 |  |
+| 3.5.7 | Latihan 1 (rerata keterlambatan per maskapai, `n()`) | sama | B | 3.5.7 (1-5) |  |
+| 3.5.7 | Latihan 2 (`slice_max(dep_delay)` per tujuan) | sama | B | 3.5.7 (1-5) |  |
+| 3.5.7 | Latihan 3 (keterlambatan menurut jam dan plot) | `vis_ggplot` dan `grf_geometrik_haluskan` | B | 3.5.7 (1-5) |  |
+| 3.5.7 | Latihan 4 (`n` negatif pada `slice_min`) | perilaku sama | B | 3.5.7 (1-5) |  |
+| 3.5.7 | Latihan 5 (`count()` sama dengan `group_by()` + `summarize()`) | sama | B | 3.5.7 (1-5) |  |
+| 3.5.7 | Latihan 6 (tibble kecil `df`) | `inp_tibble`, sama | B | 3.5.7 (6) |  |
+| 3.6 | studi kasus `Lahman::Batting` | - | D | - | Dataset ditunda atas keputusan pengguna; pola kodenya diuji pada `penerbangan`. |
+| 3.6 | pola ringkasan + `filter(n > ...)` + `geom_point(alpha = 1 / 10)` + `geom_smooth(se = FALSE)` | `alfa = 1 / 10`, `selang_kepercayaan = FALSE` | B | 3.6 |  |
+| 3.7 | ringkasan bab | - | A | - |  |
+
+## Bab 4. Workflow: code style
+
+| Bagian | Contoh buku | Padanan lokal | Kelas | Uji | Catatan |
+|---|---|---|---|---|---|
+| 4.1 | `library(tidyverse)` dan paket `styler` | `library(tidyversindonesia)`; `styler` dipakai langsung | C | - | `styler::style_file()` dan pintasan RStudio berada di luar cakupan pembungkus; tetap dipakai apa adanya. |
+| 4.2 | penamaan objek dengan `snake_case`: `short_flights` | `penerbangan_pendek` | B | 4.1-4.2 | Aturan penamaan sama; contoh memakai nama Indonesia. |
+| 4.3 | spasi di sekitar operator, `mutate(speed = ..., dep_hour = dep_time %/% 100, dep_minute = dep_time %% 100)` | `trn_mutasi(kecepatan = ..., jam_berangkat = waktu_berangkat %/% 100, ...)` | B | 4.1-4.2 | `%/%` dan `%%` tidak berubah. |
+| 4.4 | `filter(!is.na(arr_delay), !is.na(tailnum)) \|> count(dest)` | `trn_filter(!dsr_adalah_na(...), ...) \|> trn_hitung(tujuan)` | B | 4.4 | `!is.na()` dari R dasar juga tetap berfungsi pada fungsi lokal. |
+| 4.4 | `group_by(tailnum) \|> summarize(delay = mean(arr_delay, na.rm = TRUE), n = n())` | `trn_gabung_kelompok(nomor_ekor) \|> trn_statistik_ringkas(...)` | B | 4.4 |  |
+| 4.5 | plot setelah pipa: `ggplot(aes(x = month, y = delay)) + geom_point() + geom_line()` | `vis_ggplot(grf_estetika(...)) + grf_geometrik_titik() + grf_geometrik_garis()` | B | 4.5 |  |
+| 4.5 | `geom_smooth(method = "loess", span = 0.5, se = FALSE, color = "white", linewidth = 4)` | `grf_geometrik_haluskan(metode = "loess", rentang = 0.5, selang_kepercayaan = FALSE, warna = "white", ketebalan_garis = 4)` | B | 4.5 | Argumen `span` diterima fungsi asli lewat `...` dan ikut diterjemahkan. |
+| 4.6 | komentar pemisah bagian `# Load data ------` | tidak berubah | A | - |  |
+| 4.7 | Latihan 1 (rapikan kode penerbangan IAH tanpa spasi) | kode lokal yang dirapikan | B | 4.6 (latihan 1) | Hasil lokal sama dengan hasil kode asli yang berantakan. |
+| 4.7 | Latihan 1 (rapikan kode UA/IAH/HOU dengan `sched_dep_time > 0900`) | `waktu_jadwal_berangkat > 0900` | B | 4.6 (latihan 1) |  |
+| 4.7 | Latihan 2 (jalankan `Code > Reformat Code` atau `styler`) | - | A | - | Fitur RStudio. |
+| 4.8 | ringkasan bab | - | A | - |  |
+
+## Bab 5. Data tidying
+
+| Bagian | Contoh buku | Padanan lokal | Kelas | Uji | Catatan |
+|---|---|---|---|---|---|
+| 5.1.1 | `library(tidyverse)` | `library(tidyversindonesia)` | C | - | Tidyverse tidak dimuat otomatis; lihat catatan di Bab 1. |
+| 5.2 | `table1`, `table2`, `table3` (cetak) | `tabel1`, `tabel2`, `tabel3` | B | 5.2 (dataset) | Nama kolom diterjemahkan; nilai `type` pada `tabel2` menjadi `kasus`/`populasi`. |
+| 5.2 | `mutate(rate = cases / population * 10000)` | `trn_mutasi(rasio = kasus / populasi * 10000)` | B | 5.2 (laju) |  |
+| 5.2 | `group_by(year) \|> summarize(total_cases = sum(cases))` | `trn_gabung_kelompok(tahun) \|> trn_statistik_ringkas(total_kasus = dsr_jumlah(kasus))` | B | 5.2 (laju) |  |
+| 5.2 | plot kasus: `geom_line(aes(group = country), color = "grey50")`, `geom_point(aes(color = country, shape = country))`, `scale_x_continuous(breaks = c(1999, 2000))` | `grf_geometrik_garis(grf_estetika(kelompok = negara), warna = "grey50")`, `grf_geometrik_titik(...)`, `grf_skala_x_kontinu(posisi_tanda = ...)` | B | 5.2 (visualisasi) |  |
+| 5.2.1 | Latihan 1 dan 2 (menggambarkan proses menghitung laju) | - | A | - | Pertanyaan konsep tanpa kode. |
+| 5.3.1 | `billboard` | `tangga_lagu` | B | 5.3.1 | Kolom `wk1`..`wk76` menjadi `minggu1`..`minggu76`; nilai tidak diubah. |
+| 5.3.1 | `pivot_longer(cols = starts_with("wk"), names_to = "week", values_to = "rank")` | `rpi_panjang(kolom = frm_diawali("minggu"), nama_ke = "minggu", nilai_ke = "peringkat")` | B | 5.3.1 | Awalan `wk` menjadi `minggu`, sehingga teknik awalan buku tetap berlaku di sini. |
+| 5.3.1 | nilai kolom `week` sebelum `parse_number`: `wk1`, `wk2`, ... | `minggu1`, `minggu2`, ... | C | 5.3.1 | Teks pada kolom nama berubah mengikuti nama kolom lokal; angka setelah `imp_urai_angka()` sama. |
+| 5.3.1 | `values_drop_na = TRUE` | `buang_nilai_na = TRUE` | B | 5.3.1 (parse_number) | Hasil 5.307 baris, seperti di buku. |
+| 5.3.1 | `mutate(week = parse_number(week))` | `trn_mutasi(minggu = imp_urai_angka(minggu))` | B | 5.3.1 (parse_number) |  |
+| 5.3.1 | plot peringkat: `aes(group = track)`, `geom_line(alpha = 0.25)`, `scale_y_reverse()` | `grf_estetika(kelompok = lagu)`, `grf_geometrik_garis(alfa = 0.25)`, `grf_skala_y_balik()` | B | 5.3.1 (parse_number) |  |
+| 5.3.2 | `tribble(~id, ~bp1, ~bp2, ...)` | `inp_tribble(~id, ~bp1, ~bp2, ...)` | B | 5.3.2 |  |
+| 5.3.2 | `pivot_longer(cols = bp1:bp2, names_to = "measurement", values_to = "value")` | `rpi_panjang(kolom = bp1:bp2, nama_ke = ..., nilai_ke = ...)` | B | 5.3.2 |  |
+| 5.3.3 | `who2` | `tb_who` | B | 5.3.3 | Hanya `country` dan `year` yang diterjemahkan (`negara`, `tahun`); kode kolom WHO tidak diubah. |
+| 5.3.3 | `pivot_longer(cols = !(country:year), names_to = c("diagnosis", "gender", "age"), names_sep = "_", values_to = "count")` | `rpi_panjang(kolom = !(negara:tahun), nama_ke = c(...), pemisah_nama = "_", nilai_ke = ...)` | B | 5.3.3 | Hasil 405.440 baris, seperti di buku. Nama kolom hasil dipilih pengguna. |
+| 5.3.3 | penyebutan `names_pattern` (tanpa kode) | `pola_nama` | A | - | Hanya disebut dalam teks. |
+| 5.3.4 | `household` | `rumah_tangga` | B | 5.3.4 | Kolom `dob_child1` menjadi `lahir_anak1`, dan seterusnya. |
+| 5.3.4 | `names_to = c(".value", "child")`, `names_sep = "_"`, `values_drop_na = TRUE` | `nama_ke = c(".value", "anak")`, `pemisah_nama = "_"`, `buang_nilai_na = TRUE` | C | 5.3.4 | Nilai `".value"` tidak diubah. Kolom hasil bernama `lahir` dan `nama` (bagian pertama nama kolom lokal), bukan `dob` dan `name`; nilai `child1` menjadi `anak1`. |
+| 5.4 | `cms_patient_experience` | `pengalaman_pasien` | B | 5.4 | Kolom `org_pac_id`, `org_nm` menjadi `organisasi_id`, `organisasi_nama`. |
+| 5.4 | `distinct(measure_cd, measure_title)` | `trn_unik(ukuran_kode, ukuran_judul)` | B | 5.4 |  |
+| 5.4 | `pivot_wider(names_from = measure_cd, values_from = prf_rate)` | `rpi_lebar(nama_dari = ukuran_kode, nilai_dari = tingkat_kinerja)` | B | 5.4 | 500 baris, 9 kolom. |
+| 5.4 | `pivot_wider(id_cols = starts_with("org"), ...)` | `rpi_lebar(kolom_id = frm_diawali("organisasi"), ...)` | B | 5.4 | Awalan `organisasi_` dipilih agar teknik buku tetap berlaku. 95 baris, 8 kolom. |
+| 5.4.1 | tribble `df` pengukuran tekanan darah dan `pivot_wider()` | `inp_tribble`, `rpi_lebar` | B | 5.4.1 |  |
+| 5.4.1 | `distinct(measurement) \|> pull()` | `trn_unik(measurement) \|> trn_tarik()` | B | 5.4.1 |  |
+| 5.4.1 | `select(!measurement & !value) \|> distinct()` | `trn_pilih(!measurement & !value) \|> trn_unik()` | B | 5.4.1 |  |
+| 5.4.1 | `mutate(x = NA, y = NA, z = NA)` | `trn_mutasi(x = NA, y = NA, z = NA)` | B | 5.4.1 |  |
+| 5.4.1 | peringatan "Values from `value` are not uniquely identified" | peringatan yang sama | C | 5.4.1 (nilai ganda) | Peringatan tidyr tetap berbahasa Inggris, dan petunjuk di dalamnya memakai nama fungsi asli. |
+| 5.4.1 | `group_by(id, measurement) \|> summarize(n = n(), .groups = "drop") \|> filter(n > 1)` | `trn_gabung_kelompok(...) \|> trn_statistik_ringkas(n = frm_jumlah(), .hasil_kelompok = "drop") \|> trn_filter(n > 1)` | B | 5.4.1 (nilai ganda) |  |
+| 5.4.1 | `values_fn = sum` (disebut oleh pesan peringatan) | `fungsi_nilai = sum` | B | 5.4.1 (nilai ganda) |  |
+| 5.5 | `vignette("pivot", package = "tidyr")` | tidak berubah | A | - | Dokumentasi tidyr berbahasa Inggris. |
+
+## Bab 6. Workflow: scripts and projects
+
+| Bagian | Contoh buku | Padanan lokal | Kelas | Uji | Catatan |
+|---|---|---|---|---|---|
+| 6.1 | menjalankan skrip, `library()` di awal skrip, tanpa `install.packages()` di dalam skrip | tidak berubah | A | - | Kebiasaan kerja. |
+| 6.1.1 | `filter(!is.na(dep_delay), !is.na(arr_delay))` dan `not_cancelled` | `trn_filter(!dsr_adalah_na(...), ...)` | B | 6.1.1 |  |
+| 6.1.1 | `group_by(year, month, day) \|> summarize(mean = mean(dep_delay))` | `trn_gabung_kelompok(tahun, bulan, hari) \|> trn_statistik_ringkas(rerata = dsr_rerata(...))` | B | 6.1.1 |  |
+| 6.1.2 | diagnostik RStudio (`x y <- 10`, `3 == NA`) | `dsr_adalah_na(NA)` | B | 6.1.1 (galat sintaksis) | Galat sintaksis adalah milik R; `is.na()` menjadi `dsr_adalah_na()`. |
+| 6.2 | `getwd()` | `dsr_dir_kerja()` | B | 6.2 |  |
+| 6.2 | `setwd("/path")` | `dsr_set_dir_kerja("/path")` | B | 6.2 | Buku tidak menyarankan `setwd()`; fungsi lokal mengembalikan lokasi lama secara tak terlihat, seperti aslinya. |
+| 6.2 | `usethis::use_blank_slate()` | tidak berubah | C | - | Fungsi paket `usethis` di luar cakupan pembungkus; tetap dipakai apa adanya. |
+| 6.2 | proyek RStudio, jalur relatif, dan garis miring pada Windows | tidak berubah | A | - | Fitur RStudio dan konvensi R. |
+| 6.1.1 | `ggplot(diamonds, aes(x = carat, y = price)) + geom_hex()` | `vis_ggplot(berlian, grf_estetika(x = karat, y = harga)) + grf_geometrik_heksagon()` | B | 6.1.1 (diamonds) | Memerlukan paket hexbin. |
+| 6.1.1 | `ggsave("diamonds.png")` | `vis_ggplot_simpan("diamonds.png")` | B | 6.1.1 (diamonds) |  |
+| 6.1.1 | `write_csv(diamonds, "data/diamonds.csv")` | `inp_tulis_csv(berlian, "data/berlian.csv")` | C | 6.1.1 (tulis CSV) | Isi berkas sama, kecuali nilai kolom `potongan` (`cut`) yang diterjemahkan. |
+| 6.3 | ringkasan bab dan latihan (tanpa kode) | - | A | - |  |
+
+## Bab 7. Data import
+
+| Bagian | Contoh buku | Padanan lokal | Kelas | Uji | Catatan |
+|---|---|---|---|---|---|
+| 7.1.1 | `library(tidyverse)` | `library(tidyversindonesia)` | C | - | Lihat catatan di Bab 1. |
+| 7.2 | `read_csv("data/students.csv")` dan `read_csv("https://pos.it/r4ds-students-csv")` | `imp_baca_csv(imp_berkas_contoh("siswa.csv"))` | C | 7.2 (siswa), contoh paket | Berkas buku hanya tersedia lewat unduhan. Paket membawa `siswa.csv` orisinal dengan struktur dan keanehan setara (judul ber-spasi, `N/A`, sel kosong, angka bertulisan), tetapi isinya berbeda. `imp_baca_csv()` pada URL buku tetap bekerja bila ada internet (tidak diuji otomatis). |
+| 7.2.1 | `read_csv("...")` dengan `na = c("N/A", "")` | `imp_baca_csv(..., na = c("N/A", ""))` | B | 7.2 (siswa) | Argumen `na` tidak diubah. |
+| 7.2.1 | nama kolom non-sintaksis dan `rename(student_id = `Student ID`, ...)` | `trn_ubah_nama(id_siswa = `ID Siswa`, ...)` | B | 7.2 (siswa) |  |
+| 7.2.1 | `janitor::clean_names()` | `trn_rapikan_nama()` | B | 7.2 (clean_names) | Memerlukan janitor (opsional). |
+| 7.2.1 | `mutate(meal_plan = factor(meal_plan))` | `trn_mutasi(paket_makan = dsr_faktor(paket_makan))` | B | 7.2 (clean_names) |  |
+| 7.2.1 | `if_else(age == "five", "5", age)` dan `parse_number()` | `frm_jika_lain(usia == "lima", "5", usia)` dan `imp_urai_angka()` | C | 7.2 (clean_names) | Berkas contoh menulis angka dengan kata `lima` (bukan `five`); fungsi dan hasilnya setara. |
+| 7.2.1 | data literal dalam teks: `read_csv("a,b,c\n1,2,3")` | sama, dengan peringatan yang sama | C | 7.2.1 (literal) | readr 2.2 meminta `I()` untuk data literal; peringatan tetap berbahasa Inggris dan sama pada versi lokal. |
+| 7.2.1 | data literal dengan `I("...")` | `imp_baca_csv(I("..."))` | B | 7.2.1 (literal) |  |
+| 7.2.1 | `skip = 2`, `comment = "#"` | `lewati = 2`, `komentar = "#"` | B | 7.2.1 (lewati) |  |
+| 7.2.1 | `col_names = FALSE`, `col_names = c("x", "y", "z")` | `nama_kolom = FALSE`, `nama_kolom = c(...)` | B | 7.2.1 (lewati) | Nama bawaan `X1`, `X2`, `X3` tidak berubah. |
+| 7.2.2 | penyebutan `read_csv2()`, `read_tsv()`, `read_delim()`, `read_fwf()`, `read_table()`, `read_log()` | `imp_baca_csv2()`, `imp_baca_tsv()`, `imp_baca_delim()`, `imp_baca_lebar_tetap()`, `imp_baca_tabel()`, `imp_baca_log()` | B | 7.2.4; Phase 3b | Diuji di `test-perilaku-3b.R` terhadap fungsi asli. |
+| 7.2.4 | Latihan 1 (berkas dengan pemisah `\|`) | `imp_baca_delim(..., pembatas = "\|")` | B | 7.2.4 (1-4) |  |
+| 7.2.4 | Latihan 2 (argumen sama pada `read_csv()` dan `read_tsv()`) | argumen lokal yang sama | B | 7.2.4 (1-4) |  |
+| 7.2.4 | Latihan 3 (argumen terpenting `read_fwf()`) | `berkas`, `posisi_kolom` | B | 7.2.4 (1-4) |  |
+| 7.2.4 | Latihan 4 (`quote = "'"`) | `kutip = "'"` | B | 7.2.4 (1-4) |  |
+| 7.2.4 | Latihan 5 (lima berkas CSV bermasalah) | hasil dan jumlah peringatan sama | C | 7.2.4 (5) | Peringatan dan pesan galat readr tetap berbahasa Inggris. |
+| 7.2.4 | Latihan 6 (nama kolom non-sintaksis: `tibble`, `pull`, `mutate`, `rename`, plot) | `inp_tibble`, `trn_tarik`, `trn_mutasi`, `trn_ubah_nama`, `vis_ggplot` | B | 7.2.4 (6) | Tanda kutip terbalik dipakai seperti biasa. |
+| 7.3.1 | tebakan tipe kolom (logis, angka, tanggal) | sama | B | 7.3.1-7.3.2 |  |
+| 7.3.2 | data hilang bertanda `.`: `na = "."` | `na = "."` | B | 7.3.1-7.3.2 |  |
+| 7.3.2 | `col_types = list(x = col_double())` dan `problems(df)` | `tipe_kolom = list(x = imp_kolom_desimal())` dan `imp_masalah(df)` | B | 7.3.1-7.3.2 | Kolom `file` pada `problems()` memuat lokasi sementara sehingga tidak dibandingkan. |
+| 7.3.3 | `cols(.default = col_character())`, `cols_only(x = col_character())` | `imp_kolom(.bawaan = imp_kolom_teks())`, `imp_kolom_saja(x = imp_kolom_teks())` | B | 7.3.3 |  |
+| 7.3.3 | penyebutan `col_date()`, `col_factor()`, `col_logical()`, dan sejenisnya | `imp_kolom_tanggal()`, `imp_kolom_faktor()`, `imp_kolom_logika()`, ... | B | 7.3.3; Phase 3b | Diuji di `test-perilaku-3b.R`. |
+| 7.4 | `list.files("data", pattern = "sales\\.csv$", full.names = TRUE)` | `dsr_daftar_berkas("data", pola = "penjualan\\.csv$", nama_lengkap = TRUE)` | C | 7.4 | Berkas contoh bernama `01-penjualan.csv` dst., sehingga pola mengikuti. |
+| 7.4 | `read_csv(sales_files, id = "file")` | `imp_baca_csv(berkas, id = "berkas")` | B | 7.4 | Berkas contoh buku (`01-sales.csv`) diganti `01-penjualan.csv` dst. dengan 11 baris. |
+| 7.5 | `write_csv(students, "students.csv")` | `inp_tulis_csv(siswa, "siswa.csv")` | B | 7.5 | CSV tidak mempertahankan faktor. |
+| 7.5 | `write_rds()` dan `read_rds()` | `inp_tulis_rds()` dan `imp_baca_rds()` | B | 7.5 | RDS mempertahankan faktor. |
+| 7.5 | `arrow::write_parquet()` dan `read_parquet()` | `inp_tulis_parquet()` dan `imp_baca_parquet()` | B | 7.5 (parquet) | Memerlukan arrow (opsional). |
+| 7.6 | `tibble(x = ..., y = ..., z = ...)` | `inp_tibble(...)` | B | 7.6 |  |
+| 7.6 | `tribble(~x, ~y, ~z, ...)` | `inp_tribble(...)` | B | 7.6 |  |
+| 7.7 | ringkasan bab | - | A | - |  |
+
+## Bab 8. Workflow: getting help
+
+| Bagian | Contoh buku | Padanan lokal | Kelas | Uji | Catatan |
+|---|---|---|---|---|---|
+| 8.1 | mencari bantuan lewat Google, Stack Overflow, dan komunitas Posit | - | D | - | Di luar cakupan paket. Pesan galat dalam bahasa Inggris tetap berguna untuk mencari bantuan. |
+| 8.1 | `Sys.setenv(LANGUAGE = "en")` agar pesan galat berbahasa Inggris | tidak berubah | A | 8.1 | Tetap berlaku bagi pelajar yang ingin mencari galat di internet. |
+| 8.2 | contoh reprex `y <- 1:4; mean(y)` | `dsr_rerata(y)` | B | 8.2 |  |
+| 8.2 | `reprex::reprex()` | tidak berubah | C | - | Fungsi paket `reprex` bersifat interaktif (papan klip dan penampil) dan di luar cakupan pembungkus. |
+| 8.2 | `dput(mtcars)` | `dsr_dput(...)` | B | 8.2 | Dataset `mtcars` asli tetap tersedia di R dasar; `dsr_dput()` bekerja pada objek apa pun dan keluarannya dapat dijalankan ulang. |
+| 8.2 | `tidyverse_update()` dan memeriksa versi paket | tidak berubah | C | - | Dipakai apa adanya. |
+| 8.3 | menyusun pertanyaan yang baik dan ringkasan bab (tanpa kode) | - | A | - |  |
+
+## Ringkasan
+
+| Bab | A | B | C | D | Jumlah |
+|---|---|---|---|---|---|
+| 1. Data visualization | 5 | 48 | 6 | 1 | 60 |
+| 2. Workflow: basics | 10 | 5 | 1 | 0 | 16 |
+| 3. Data transformation | 3 | 53 | 7 | 1 | 64 |
+| 4. Workflow: code style | 3 | 8 | 1 | 0 | 12 |
+| 5. Data tidying | 3 | 24 | 4 | 0 | 31 |
+| 6. Workflow: scripts and projects | 3 | 7 | 2 | 0 | 12 |
+| 7. Data import | 1 | 24 | 6 | 0 | 31 |
+| 8. Workflow: getting help | 2 | 2 | 2 | 1 | 7 |
+| **Total** | 30 | 171 | 29 | 3 | 233 |
+
+Bab yang belum ada di tabel ini belum diaudit (Phase 4 dikerjakan per bab).

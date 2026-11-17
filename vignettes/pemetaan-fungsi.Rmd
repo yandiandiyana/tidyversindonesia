@@ -1,0 +1,205 @@
+---
+title: "Pemetaan fungsi dan argumen"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Pemetaan fungsi dan argumen}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(collapse = TRUE, comment = "#>", fig.width = 6.5, fig.height = 4)
+```
+
+Tabel ini dibangkitkan otomatis dari kamus paket sehingga selalu sama dengan kodenya. Setiap fungsi lokal memanggil satu fungsi asli; **hanya nama fungsi dan nama argumen yang diterjemahkan, nilai argumen tidak pernah diubah.** Argumen yang tidak tercantum di kolom terakhir memakai nama yang sama dengan aslinya. Nama argumen asli (berbahasa Inggris) juga tetap diterima.
+
+Fungsi lain yang bukan pembungkus: `imp_berkas_contoh()` mengembalikan lokasi berkas contoh yang dibawa paket.
+
+## imp_: impor data
+
+Membaca data dari berkas, termasuk pembangun tipe kolom.
+
+| Fungsi lokal | Fungsi asli | Argumen yang diterjemahkan (lokal = asli) |
+|---|---|---|
+| `imp_baca_csv()` | `readr::read_csv()` | `berkas` = `file`, `nama_kolom` = `col_names`, `tipe_kolom` = `col_types`, `pilih_kolom` = `col_select`, `lokal` = `locale`, `na_berkutip` = `quoted_na`, `kutip` = `quote`, `komentar` = `comment`, `pangkas_spasi` = `trim_ws`, `lewati` = `skip`, `maks_baris` = `n_max`, `maks_tebakan` = `guess_max`, `perbaikan_nama` = `name_repair`, `jumlah_utas` = `num_threads`, `kemajuan` = `progress`, `tampilkan_tipe_kolom` = `show_col_types`, `lewati_baris_kosong` = `skip_empty_rows`, `tunda_baca` = `lazy` |
+| `imp_baca_csv2()` | `readr::read_csv2()` | `berkas` = `file`, `nama_kolom` = `col_names`, `tipe_kolom` = `col_types`, `pilih_kolom` = `col_select`, `lokal` = `locale`, `na_berkutip` = `quoted_na`, `kutip` = `quote`, `komentar` = `comment`, `pangkas_spasi` = `trim_ws`, `lewati` = `skip`, `maks_baris` = `n_max`, `maks_tebakan` = `guess_max`, `kemajuan` = `progress`, `perbaikan_nama` = `name_repair`, `jumlah_utas` = `num_threads`, `tampilkan_tipe_kolom` = `show_col_types`, `lewati_baris_kosong` = `skip_empty_rows`, `tunda_baca` = `lazy` |
+| `imp_baca_tsv()` | `readr::read_tsv()` | `berkas` = `file`, `nama_kolom` = `col_names`, `tipe_kolom` = `col_types`, `pilih_kolom` = `col_select`, `lokal` = `locale`, `na_berkutip` = `quoted_na`, `kutip` = `quote`, `komentar` = `comment`, `pangkas_spasi` = `trim_ws`, `lewati` = `skip`, `maks_baris` = `n_max`, `maks_tebakan` = `guess_max`, `kemajuan` = `progress`, `perbaikan_nama` = `name_repair`, `jumlah_utas` = `num_threads`, `tampilkan_tipe_kolom` = `show_col_types`, `lewati_baris_kosong` = `skip_empty_rows`, `tunda_baca` = `lazy` |
+| `imp_baca_delim()` | `readr::read_delim()` | `berkas` = `file`, `pembatas` = `delim`, `kutip` = `quote`, `escape_garis_miring` = `escape_backslash`, `escape_ganda` = `escape_double`, `nama_kolom` = `col_names`, `tipe_kolom` = `col_types`, `pilih_kolom` = `col_select`, `lokal` = `locale`, `na_berkutip` = `quoted_na`, `komentar` = `comment`, `pangkas_spasi` = `trim_ws`, `lewati` = `skip`, `maks_baris` = `n_max`, `maks_tebakan` = `guess_max`, `perbaikan_nama` = `name_repair`, `jumlah_utas` = `num_threads`, `kemajuan` = `progress`, `tampilkan_tipe_kolom` = `show_col_types`, `lewati_baris_kosong` = `skip_empty_rows`, `tunda_baca` = `lazy` |
+| `imp_baca_lebar_tetap()` | `readr::read_fwf()` | `berkas` = `file`, `posisi_kolom` = `col_positions`, `tipe_kolom` = `col_types`, `pilih_kolom` = `col_select`, `lokal` = `locale`, `komentar` = `comment`, `pangkas_spasi` = `trim_ws`, `lewati` = `skip`, `maks_baris` = `n_max`, `maks_tebakan` = `guess_max`, `kemajuan` = `progress`, `perbaikan_nama` = `name_repair`, `jumlah_utas` = `num_threads`, `tampilkan_tipe_kolom` = `show_col_types`, `tunda_baca` = `lazy`, `lewati_baris_kosong` = `skip_empty_rows` |
+| `imp_baca_tabel()` | `readr::read_table()` | `berkas` = `file`, `nama_kolom` = `col_names`, `tipe_kolom` = `col_types`, `lokal` = `locale`, `lewati` = `skip`, `maks_baris` = `n_max`, `maks_tebakan` = `guess_max`, `kemajuan` = `progress`, `komentar` = `comment`, `tampilkan_tipe_kolom` = `show_col_types`, `lewati_baris_kosong` = `skip_empty_rows` |
+| `imp_baca_log()` | `readr::read_log()` | `berkas` = `file`, `nama_kolom` = `col_names`, `tipe_kolom` = `col_types`, `pangkas_spasi` = `trim_ws`, `lewati` = `skip`, `maks_baris` = `n_max`, `tampilkan_tipe_kolom` = `show_col_types`, `kemajuan` = `progress` |
+| `imp_baca_rds()` | `readr::read_rds()` | `berkas` = `file` |
+| `imp_baca_parquet()` | `arrow::read_parquet()` (paket opsional) | `berkas` = `file`, `pilih_kolom` = `col_select`, `sebagai_data_frame` = `as_data_frame` |
+| `imp_lebar_kolom()` | `readr::fwf_widths()` | `lebar` = `widths`, `nama_kolom` = `col_names` |
+| `imp_posisi_kolom()` | `readr::fwf_positions()` | `mulai` = `start`, `akhir` = `end`, `nama_kolom` = `col_names` |
+| `imp_masalah()` | `readr::problems()` | (tidak ada) |
+| `imp_spesifikasi()` | `readr::spec()` | (tidak ada) |
+| `imp_kolom()` | `readr::cols()` | `.bawaan` = `.default` |
+| `imp_kolom_saja()` | `readr::cols_only()` | (tidak ada) |
+| `imp_kolom_logika()` | `readr::col_logical()` | (tidak ada) |
+| `imp_kolom_desimal()` | `readr::col_double()` | (tidak ada) |
+| `imp_kolom_bulat()` | `readr::col_integer()` | (tidak ada) |
+| `imp_kolom_teks()` | `readr::col_character()` | (tidak ada) |
+| `imp_kolom_faktor()` | `readr::col_factor()` | `level` = `levels`, `berurut` = `ordered`, `sertakan_na` = `include_na` |
+| `imp_kolom_tanggal()` | `readr::col_date()` | (tidak ada) |
+| `imp_kolom_waktu()` | `readr::col_datetime()` | (tidak ada) |
+| `imp_kolom_angka()` | `readr::col_number()` | (tidak ada) |
+| `imp_kolom_lewati()` | `readr::col_skip()` | (tidak ada) |
+| `imp_urai_angka()` | `readr::parse_number()` | `lokal` = `locale`, `pangkas_spasi` = `trim_ws` |
+
+## inp_: memasukkan data
+
+Membuat tabel langsung di R dan menuliskan data ke berkas.
+
+| Fungsi lokal | Fungsi asli | Argumen yang diterjemahkan (lokal = asli) |
+|---|---|---|
+| `inp_tulis_csv()` | `readr::write_csv()` | `berkas` = `file`, `tambahkan` = `append`, `nama_kolom` = `col_names`, `kutip` = `quote`, `akhir_baris` = `eol`, `jumlah_utas` = `num_threads`, `kemajuan` = `progress` |
+| `inp_tulis_tsv()` | `readr::write_tsv()` | `berkas` = `file`, `tambahkan` = `append`, `nama_kolom` = `col_names`, `kutip` = `quote`, `akhir_baris` = `eol`, `jumlah_utas` = `num_threads`, `kemajuan` = `progress` |
+| `inp_tulis_rds()` | `readr::write_rds()` | `berkas` = `file`, `kompresi` = `compress`, `versi` = `version`, `teks` = `text` |
+| `inp_tulis_parquet()` | `arrow::write_parquet()` (paket opsional) | `tujuan` = `sink`, `ukuran_potongan` = `chunk_size`, `versi` = `version`, `kompresi` = `compression`, `tingkat_kompresi` = `compression_level`, `pakai_kamus` = `use_dictionary`, `tulis_statistik` = `write_statistics`, `ukuran_halaman_data` = `data_page_size`, `pakai_stempel_waktu_int96` = `use_deprecated_int96_timestamps`, `paksa_stempel_waktu` = `coerce_timestamps`, `izinkan_stempel_waktu_terpotong` = `allow_truncated_timestamps` |
+| `inp_tibble()` | `tibble::tibble()` | `.baris` = `.rows`, `.perbaikan_nama` = `.name_repair` |
+| `inp_tribble()` | `tibble::tribble()` | (tidak ada) |
+
+## rpi_: merapikan data
+
+Mengubah bentuk tabel (panjang dan lebar).
+
+| Fungsi lokal | Fungsi asli | Argumen yang diterjemahkan (lokal = asli) |
+|---|---|---|
+| `rpi_panjang()` | `tidyr::pivot_longer()` | `kolom` = `cols`, `variasi_kolom` = `cols_vary`, `nama_ke` = `names_to`, `awalan_nama` = `names_prefix`, `pemisah_nama` = `names_sep`, `pola_nama` = `names_pattern`, `ptype_nama` = `names_ptypes`, `transformasi_nama` = `names_transform`, `perbaikan_nama` = `names_repair`, `nilai_ke` = `values_to`, `buang_nilai_na` = `values_drop_na`, `ptype_nilai` = `values_ptypes`, `transformasi_nilai` = `values_transform` |
+| `rpi_lebar()` | `tidyr::pivot_wider()` | `kolom_id` = `id_cols`, `perluas_id` = `id_expand`, `nama_dari` = `names_from`, `awalan_nama` = `names_prefix`, `pemisah_nama` = `names_sep`, `templat_nama` = `names_glue`, `urutkan_nama` = `names_sort`, `variasi_nama` = `names_vary`, `perluas_nama` = `names_expand`, `perbaikan_nama` = `names_repair`, `nilai_dari` = `values_from`, `isi_nilai` = `values_fill`, `fungsi_nilai` = `values_fn`, `fungsi_tak_terpakai` = `unused_fn` |
+
+## trn_: transformasi data
+
+Kata kerja transformasi dplyr.
+
+| Fungsi lokal | Fungsi asli | Argumen yang diterjemahkan (lokal = asli) |
+|---|---|---|
+| `trn_filter()` | `dplyr::filter()` | `.berdasarkan` = `.by`, `.pertahankan` = `.preserve` |
+| `trn_urutkan()` | `dplyr::arrange()` | `.per_kelompok` = `.by_group` |
+| `trn_unik()` | `dplyr::distinct()` | `.simpan_semua` = `.keep_all` |
+| `trn_hitung()` | `dplyr::count()` | `bobot` = `wt`, `urut` = `sort`, `nama` = `name` |
+| `trn_mutasi()` | `dplyr::mutate()` | `.berdasarkan` = `.by`, `.simpan` = `.keep`, `.sebelum` = `.before`, `.setelah` = `.after` |
+| `trn_pilih()` | `dplyr::select()` | (tidak ada) |
+| `trn_ubah_nama()` | `dplyr::rename()` | (tidak ada) |
+| `trn_pindah()` | `dplyr::relocate()` | `.sebelum` = `.before`, `.setelah` = `.after` |
+| `trn_tarik()` | `dplyr::pull()` | `variabel` = `var`, `nama` = `name` |
+| `trn_gabung_kelompok()` | `dplyr::group_by()` | `.tambah` = `.add`, `.buang_kosong` = `.drop` |
+| `trn_lepas_kelompok()` | `dplyr::ungroup()` | (tidak ada) |
+| `trn_statistik_ringkas()` | `dplyr::summarise()` | `.berdasarkan` = `.by`, `.hasil_kelompok` = `.groups` |
+| `trn_iris()` | `dplyr::slice()` | `.berdasarkan` = `.by`, `.pertahankan` = `.preserve` |
+| `trn_iris_kepala()` | `dplyr::slice_head()` | `proporsi` = `prop`, `berdasarkan` = `by` |
+| `trn_iris_ekor()` | `dplyr::slice_tail()` | `proporsi` = `prop`, `berdasarkan` = `by` |
+| `trn_iris_min()` | `dplyr::slice_min()` | `urutan_oleh` = `order_by`, `proporsi` = `prop`, `berdasarkan` = `by`, `dengan_seri` = `with_ties`, `buang_na` = `na_rm` |
+| `trn_iris_maks()` | `dplyr::slice_max()` | `urutan_oleh` = `order_by`, `proporsi` = `prop`, `berdasarkan` = `by`, `dengan_seri` = `with_ties`, `buang_na` = `na_rm` |
+| `trn_iris_acak()` | `dplyr::slice_sample()` | `proporsi` = `prop`, `berdasarkan` = `by`, `bobot_oleh` = `weight_by`, `dengan_pengembalian` = `replace` |
+| `trn_rapikan_nama()` | `janitor::clean_names()` (paket opsional) | (tidak ada) |
+
+## frm_: pendukung transformasi
+
+Pembantu yang dipakai di dalam fungsi `trn_` dan `rpi_`.
+
+| Fungsi lokal | Fungsi asli | Argumen yang diterjemahkan (lokal = asli) |
+|---|---|---|
+| `frm_diawali()` | `tidyselect::starts_with()` | `cocok` = `match`, `abaikan_kapital` = `ignore.case`, `variabel` = `vars` |
+| `frm_diakhiri()` | `tidyselect::ends_with()` | `cocok` = `match`, `abaikan_kapital` = `ignore.case`, `variabel` = `vars` |
+| `frm_memuat()` | `tidyselect::contains()` | `cocok` = `match`, `abaikan_kapital` = `ignore.case`, `variabel` = `vars` |
+| `frm_cocok()` | `tidyselect::matches()` | `cocok` = `match`, `abaikan_kapital` = `ignore.case`, `variabel` = `vars` |
+| `frm_rentang_angka()` | `tidyselect::num_range()` | `awalan` = `prefix`, `rentang` = `range`, `akhiran` = `suffix`, `lebar` = `width`, `variabel` = `vars` |
+| `frm_semua()` | `tidyselect::everything()` | `variabel` = `vars` |
+| `frm_di_mana()` | `tidyselect::where()` | `fungsi` = `fn` |
+| `frm_salah_satu()` | `tidyselect::any_of()` | `variabel` = `vars` |
+| `frm_turun()` | `dplyr::desc()` | (tidak ada) |
+| `frm_jumlah()` | `dplyr::n()` | (tidak ada) |
+| `frm_jika_lain()` | `dplyr::if_else()` | `kondisi` = `condition`, `benar` = `true`, `salah` = `false`, `hilang` = `missing`, `ukuran_keluaran` = `size` |
+| `frm_faktor_frekuensi()` | `forcats::fct_infreq()` (paket opsional) | `bobot` = `w`, `berurut` = `ordered` |
+
+## vis_: objek plot
+
+Membuat, menyimpan, dan mengambil objek plot.
+
+| Fungsi lokal | Fungsi asli | Argumen yang diterjemahkan (lokal = asli) |
+|---|---|---|
+| `vis_ggplot()` | `ggplot2::ggplot()` | `pemetaan` = `mapping`, `lingkungan` = `environment` |
+| `vis_ggplot_simpan()` | `ggplot2::ggsave()` | `nama_berkas` = `filename`, `perangkat` = `device`, `lokasi` = `path`, `skala_gambar` = `scale`, `lebar` = `width`, `tinggi` = `height`, `satuan` = `units`, `batasi_ukuran` = `limitsize`, `latar` = `bg`, `buat_dir` = `create.dir` |
+| `vis_ggplot_terakhir()` | `ggplot2::last_plot()` | (tidak ada) |
+
+## grf_: komponen grafik
+
+Geometri, faset, skala, tema, label, dan pemetaan estetika.
+
+| Fungsi lokal | Fungsi asli | Argumen yang diterjemahkan (lokal = asli) |
+|---|---|---|
+| `grf_estetika()` | `ggplot2::aes()` | (tidak ada) |
+| `grf_label()` | `ggplot2::labs()` | `judul` = `title`, `subjudul` = `subtitle`, `keterangan` = `caption`, `kamus` = `dictionary`, `teks_alternatif` = `alt`, `wawasan_alternatif` = `alt_insight`, `sumbu_x` = `x`, `sumbu_y` = `y` |
+| `grf_geometrik_titik()` | `ggplot2::geom_point()` | `pemetaan` = `mapping`, `statistik` = `stat`, `posisi` = `position`, `buang_na` = `na.rm`, `tampilkan_legenda` = `show.legend`, `warisi_estetika` = `inherit.aes` |
+| `grf_geometrik_garis()` | `ggplot2::geom_line()` | `pemetaan` = `mapping`, `statistik` = `stat`, `posisi` = `position`, `orientasi` = `orientation`, `panah` = `arrow`, `isian_panah` = `arrow.fill`, `ujung_garis` = `lineend`, `sambungan_garis` = `linejoin`, `batas_sambungan` = `linemitre`, `buang_na` = `na.rm`, `tampilkan_legenda` = `show.legend`, `warisi_estetika` = `inherit.aes` |
+| `grf_geometrik_batang()` | `ggplot2::geom_bar()` | `pemetaan` = `mapping`, `statistik` = `stat`, `posisi` = `position`, `perataan` = `just`, `ujung_garis` = `lineend`, `sambungan_garis` = `linejoin`, `buang_na` = `na.rm`, `tampilkan_legenda` = `show.legend`, `warisi_estetika` = `inherit.aes` |
+| `grf_geometrik_histogram()` | `ggplot2::geom_histogram()` | `pemetaan` = `mapping`, `statistik` = `stat`, `posisi` = `position`, `lebar_bin` = `binwidth`, `jumlah_bin` = `bins`, `orientasi` = `orientation`, `ujung_garis` = `lineend`, `sambungan_garis` = `linejoin`, `buang_na` = `na.rm`, `tampilkan_legenda` = `show.legend`, `warisi_estetika` = `inherit.aes` |
+| `grf_geometrik_densitas()` | `ggplot2::geom_density()` | `pemetaan` = `mapping`, `statistik` = `stat`, `posisi` = `position`, `tipe_kontur` = `outline.type`, `ujung_garis` = `lineend`, `sambungan_garis` = `linejoin`, `batas_sambungan` = `linemitre`, `buang_na` = `na.rm`, `tampilkan_legenda` = `show.legend`, `warisi_estetika` = `inherit.aes` |
+| `grf_geometrik_boxplot()` | `ggplot2::geom_boxplot()` | `pemetaan` = `mapping`, `statistik` = `stat`, `posisi` = `position`, `pencilan` = `outliers`, `warna_pencilan` = `outlier.colour`, `isian_pencilan` = `outlier.fill`, `bentuk_pencilan` = `outlier.shape`, `ukuran_pencilan` = `outlier.size`, `ketebalan_tepi_pencilan` = `outlier.stroke`, `alfa_pencilan` = `outlier.alpha`, `warna_kumis` = `whisker.colour`, `tipe_garis_kumis` = `whisker.linetype`, `ketebalan_garis_kumis` = `whisker.linewidth`, `warna_ujung_kumis` = `staple.colour`, `tipe_garis_ujung_kumis` = `staple.linetype`, `ketebalan_garis_ujung_kumis` = `staple.linewidth`, `warna_median` = `median.colour`, `tipe_garis_median` = `median.linetype`, `ketebalan_garis_median` = `median.linewidth`, `warna_kotak` = `box.colour`, `tipe_garis_kotak` = `box.linetype`, `ketebalan_garis_kotak` = `box.linewidth`, `takik` = `notch`, `lebar_takik` = `notchwidth`, `lebar_ujung_kumis` = `staplewidth`, `lebar_variabel` = `varwidth`, `buang_na` = `na.rm`, `orientasi` = `orientation`, `tampilkan_legenda` = `show.legend`, `warisi_estetika` = `inherit.aes` |
+| `grf_geometrik_haluskan()` | `ggplot2::geom_smooth()` | `pemetaan` = `mapping`, `statistik` = `stat`, `posisi` = `position`, `metode` = `method`, `rumus` = `formula`, `selang_kepercayaan` = `se`, `buang_na` = `na.rm`, `orientasi` = `orientation`, `tampilkan_legenda` = `show.legend`, `warisi_estetika` = `inherit.aes`, `rentang` = `span`, `tingkat_kepercayaan` = `level`, `rentang_penuh` = `fullrange` |
+| `grf_geometrik_heksagon()` | `ggplot2::geom_hex()` | `pemetaan` = `mapping`, `statistik` = `stat`, `posisi` = `position`, `ujung_garis` = `lineend`, `sambungan_garis` = `linejoin`, `batas_sambungan` = `linemitre`, `buang_na` = `na.rm`, `tampilkan_legenda` = `show.legend`, `warisi_estetika` = `inherit.aes`, `jumlah_bin` = `bins`, `lebar_bin` = `binwidth` |
+| `grf_faset_bungkus()` | `ggplot2::facet_wrap()` | `faset` = `facets`, `jumlah_baris` = `nrow`, `jumlah_kolom` = `ncol`, `skala` = `scales`, `ruang` = `space`, `susutkan` = `shrink`, `pelabel` = `labeller`, `urut_tabel` = `as.table`, `pindah_strip` = `switch`, `buang_kosong` = `drop`, `arah` = `dir`, `posisi_strip` = `strip.position`, `sumbu` = `axes`, `label_sumbu` = `axis.labels` |
+| `grf_faset_jendela()` | `ggplot2::facet_grid()` | `baris` = `rows`, `kolom` = `cols`, `skala` = `scales`, `ruang` = `space`, `susutkan` = `shrink`, `pelabel` = `labeller`, `urut_tabel` = `as.table`, `pindah_strip` = `switch`, `buang_kosong` = `drop`, `marjin` = `margins`, `sumbu` = `axes`, `label_sumbu` = `axis.labels`, `faset` = `facets` |
+| `grf_skala_x_kontinu()` | `ggplot2::scale_x_continuous()` | `nama` = `name`, `posisi_tanda` = `breaks`, `posisi_tanda_minor` = `minor_breaks`, `jumlah_tanda` = `n.breaks`, `label_tanda` = `labels`, `batas` = `limits`, `perluasan` = `expand`, `luar_batas` = `oob`, `nilai_na` = `na.value`, `transformasi` = `transform`, `panduan` = `guide`, `posisi` = `position`, `sumbu_sekunder` = `sec.axis` |
+| `grf_skala_y_balik()` | `ggplot2::scale_y_reverse()` | `nama` = `name`, `posisi_tanda` = `breaks`, `posisi_tanda_minor` = `minor_breaks`, `jumlah_tanda` = `n.breaks`, `label_tanda` = `labels`, `batas` = `limits`, `perluasan` = `expand`, `luar_batas` = `oob`, `nilai_na` = `na.value`, `panduan` = `guide`, `posisi` = `position`, `sumbu_sekunder` = `sec.axis` |
+| `grf_skalawarna_butawarna()` | `ggthemes::scale_color_colorblind()` (paket opsional) | `hitam` = `black` |
+| `grf_tema_abu()` | `ggplot2::theme_grey()` | `ukuran_dasar` = `base_size`, `keluarga_font_dasar` = `base_family`, `keluarga_font_judul` = `header_family`, `ketebalan_garis_dasar` = `base_line_size`, `ukuran_persegi_dasar` = `base_rect_size`, `tinta` = `ink`, `kertas` = `paper`, `aksen` = `accent` |
+| `grf_tema_hitamputih()` | `ggplot2::theme_bw()` | `ukuran_dasar` = `base_size`, `keluarga_font_dasar` = `base_family`, `keluarga_font_judul` = `header_family`, `ketebalan_garis_dasar` = `base_line_size`, `ukuran_persegi_dasar` = `base_rect_size`, `tinta` = `ink`, `kertas` = `paper`, `aksen` = `accent` |
+| `grf_tema_gambar_garis()` | `ggplot2::theme_linedraw()` | `ukuran_dasar` = `base_size`, `keluarga_font_dasar` = `base_family`, `keluarga_font_judul` = `header_family`, `ketebalan_garis_dasar` = `base_line_size`, `ukuran_persegi_dasar` = `base_rect_size`, `tinta` = `ink`, `kertas` = `paper`, `aksen` = `accent` |
+| `grf_tema_terang()` | `ggplot2::theme_light()` | `ukuran_dasar` = `base_size`, `keluarga_font_dasar` = `base_family`, `keluarga_font_judul` = `header_family`, `ketebalan_garis_dasar` = `base_line_size`, `ukuran_persegi_dasar` = `base_rect_size`, `tinta` = `ink`, `kertas` = `paper`, `aksen` = `accent` |
+| `grf_tema_gelap()` | `ggplot2::theme_dark()` | `ukuran_dasar` = `base_size`, `keluarga_font_dasar` = `base_family`, `keluarga_font_judul` = `header_family`, `ketebalan_garis_dasar` = `base_line_size`, `ukuran_persegi_dasar` = `base_rect_size`, `tinta` = `ink`, `kertas` = `paper`, `aksen` = `accent` |
+| `grf_tema_minimal()` | `ggplot2::theme_minimal()` | `ukuran_dasar` = `base_size`, `keluarga_font_dasar` = `base_family`, `keluarga_font_judul` = `header_family`, `ketebalan_garis_dasar` = `base_line_size`, `ukuran_persegi_dasar` = `base_rect_size`, `tinta` = `ink`, `kertas` = `paper`, `aksen` = `accent` |
+| `grf_tema_klasik()` | `ggplot2::theme_classic()` | `ukuran_dasar` = `base_size`, `keluarga_font_dasar` = `base_family`, `keluarga_font_judul` = `header_family`, `ketebalan_garis_dasar` = `base_line_size`, `ukuran_persegi_dasar` = `base_rect_size`, `tinta` = `ink`, `kertas` = `paper`, `aksen` = `accent` |
+| `grf_tema_kosong()` | `ggplot2::theme_void()` | `ukuran_dasar` = `base_size`, `keluarga_font_dasar` = `base_family`, `keluarga_font_judul` = `header_family`, `ketebalan_garis_dasar` = `base_line_size`, `ukuran_persegi_dasar` = `base_rect_size`, `tinta` = `ink`, `kertas` = `paper`, `aksen` = `accent` |
+| `grf_tema_uji()` | `ggplot2::theme_test()` | `ukuran_dasar` = `base_size`, `keluarga_font_dasar` = `base_family`, `keluarga_font_judul` = `header_family`, `ketebalan_garis_dasar` = `base_line_size`, `ukuran_persegi_dasar` = `base_rect_size`, `tinta` = `ink`, `kertas` = `paper`, `aksen` = `accent` |
+
+## dsr_: dasar R
+
+Fungsi dasar R yang dipakai buku.
+
+| Fungsi lokal | Fungsi asli | Argumen yang diterjemahkan (lokal = asli) |
+|---|---|---|
+| `dsr_rerata()` | `base::mean()` | `pangkas` = `trim`, `buang_na` = `na.rm` |
+| `dsr_jumlah()` | `base::sum()` | `buang_na` = `na.rm` |
+| `dsr_sinus()` | `base::sin()` | (tidak ada) |
+| `dsr_adalah_na()` | `base::is.na()` | (tidak ada) |
+| `dsr_urutan()` | `base::seq()` | `dari` = `from`, `sampai` = `to`, `selisih` = `by`, `panjang_keluaran` = `length.out`, `sepanjang` = `along.with` |
+| `dsr_acak_normal()` | `stats::rnorm()` | `rerata` = `mean` |
+| `dsr_panjang()` | `base::length()` | (tidak ada) |
+| `dsr_faktor()` | `base::factor()` | `level` = `levels`, `label_level` = `labels`, `kecualikan` = `exclude`, `berurut` = `ordered`, `maks_level` = `nmax` |
+| `dsr_daftar_berkas()` | `base::list.files()` | `lokasi` = `path`, `pola` = `pattern`, `semua_berkas` = `all.files`, `nama_lengkap` = `full.names`, `rekursif` = `recursive`, `abaikan_kapital` = `ignore.case`, `sertakan_dir` = `include.dirs`, `tanpa_titik_titik` = `no..`, `harfiah` = `fixed` (R >= 4.6.0) |
+| `dsr_dir_kerja()` | `base::getwd()` | (tidak ada) |
+| `dsr_set_dir_kerja()` | `base::setwd()` | `direktori` = `dir` |
+| `dsr_dput()` | `base::dput()` | `berkas` = `file`, `kontrol` = `control` |
+
+## dtr_: inspeksi data
+
+Melihat isi data.
+
+| Fungsi lokal | Fungsi asli | Argumen yang diterjemahkan (lokal = asli) |
+|---|---|---|
+| `dtr_sekilas()` | `dplyr::glimpse()` | `lebar` = `width` |
+| `dtr_kepala()` | `utils::head()` | (tidak ada) |
+| `dtr_ekor()` | `utils::tail()` | `pertahankan_nomor` = `keepnums`, `nomor_baris` = `addrownums` |
+| `dtr_lihat()` | `utils::View()` | `judul` = `title` |
+
+## Sintaks dasar yang tidak dibungkus
+
+Tetap dipakai apa adanya: `<-`, `|>`, `%>%`, `%in%`, `%/%`, `%%`, operator aritmetika dan logika, `c()`, `pi`, `library()`, `I()`, dan `~`.
+
+## Pemetaan estetika
+
+Di dalam `grf_estetika()`, `grf_geometrik_*()`, dan `grf_label()`, nama estetika diterjemahkan:
+
+| Lokal | Asli |
+|---|---|
+| `warna` | `colour` atau `color` |
+| `isian` | `fill` |
+| `bentuk` | `shape` |
+| `ukuran` | `size` |
+| `alfa` | `alpha` |
+| `tipe_garis` | `linetype` |
+| `ketebalan_garis` | `linewidth` |
+| `kelompok` | `group` |

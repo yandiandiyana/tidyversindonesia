@@ -1,0 +1,11 @@
+linters: linters_with_defaults(
+    line_length_linter(100L),
+    object_length_linter(35L),
+    object_usage_linter = NULL
+  )
+encoding: "UTF-8"
+exclusions: list("dev", "data-raw", "R/kamus.R", "R/dataset_lazy.R",
+    "tests/testthat/test-r4ds-bab01.R", "tests/testthat/test-r4ds-bab02.R",
+    "tests/testthat/test-r4ds-bab03.R", "tests/testthat/test-r4ds-bab04.R",
+    "tests/testthat/test-r4ds-bab05.R", "tests/testthat/test-r4ds-bab06.R",
+    "tests/testthat/test-r4ds-bab07.R", "tests/testthat/test-r4ds-bab08.R")

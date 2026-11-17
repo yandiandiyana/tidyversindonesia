@@ -1,0 +1,66 @@
+---
+title: "Pemecahan masalah"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Pemecahan masalah}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(collapse = TRUE, comment = "#>", fig.width = 6.5, fig.height = 4)
+```
+
+## "could not find function"
+
+Periksa awalan dan ejaan nama fungsi. Ketik awalan lalu tekan Tab di RStudio untuk melihat daftarnya (misalnya
+`trn_` untuk transformasi). Daftar lengkap ada di `vignette("pemetaan-fungsi")`.
+
+## Argumen tidak dikenali, atau diabaikan
+
+Nama argumen lokal harus ditulis **lengkap**. Singkatan nama lokal (misalnya `tampilkan_tipe` untuk
+`tampilkan_tipe_kolom`) tidak diterjemahkan dan diteruskan apa adanya ke fungsi asli, yang biasanya
+memberi galat atau peringatan "unknown parameters". Nama argumen asli berbahasa Inggris tetap diterima.
+
+## "Konflik argumen"
+
+Anda memberikan nama lokal dan nama asli untuk argumen yang sama sekaligus (misalnya `.berdasarkan` dan
+`.by`, atau `warna` dan `color`). Gunakan salah satu saja.
+
+## Pesan atau peringatan berbahasa Inggris
+
+Pesan dari paket tidyverse tidak diterjemahkan, dan menyebut nama fungsi asli (misalnya `filter()`). Itu
+perilaku yang disengaja. Pesan yang berasal dari paket ini sendiri berbahasa Indonesia.
+
+## "memerlukan paket ... yang belum terpasang"
+
+Beberapa fungsi memakai paket yang dipasang terpisah:
+
+| Fungsi | Paket |
+|---|---|
+| `grf_skalawarna_butawarna()` | ggthemes |
+| `trn_rapikan_nama()` | janitor |
+| `frm_faktor_frekuensi()` | forcats |
+| `imp_baca_parquet()`, `inp_tulis_parquet()` | arrow |
+| `grf_geometrik_heksagon()` (untuk menggambar) | hexbin |
+
+Pasang dengan `install.packages("nama_paket")`.
+
+## Dataset tidak ditemukan, atau galat saat pertama kali dipakai
+
+Dataset lokal (kecuali `penguin`) dibuat saat pertama kali dipakai dari paket sumbernya (ggplot2, tidyr,
+nycflights13). Pastikan paket-paket itu terpasang dan versinya tidak terlalu lama. Bila strukturnya berubah,
+paket memberi pesan yang meminta Anda melaporkannya.
+
+## Memilih kolom dengan awalan tidak memberi hasil yang sama dengan buku
+
+Lihat bagian "Hal yang perlu diperhatikan saat berpindah" di `vignette("panduan-migrasi")`.
+
+## `dtr_lihat()` tidak membuka apa-apa
+
+`dtr_lihat()` (padanan `View()`) hanya bekerja pada sesi interaktif seperti RStudio.
+
+## Menghitung per kelompok: argumen `nama`, `urut`, `bobot`
+
+Pada `trn_hitung()`, menulis `nama = ...` berarti mengisi argumen `nama` (nama kolom hasil), sama seperti
+`name = ...` pada `dplyr::count()`. Jangan memakainya untuk membuat kolom bernama `nama`.

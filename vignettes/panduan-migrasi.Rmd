@@ -1,0 +1,73 @@
+---
+title: "Panduan migrasi ke R dan tidyverse standar"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Panduan migrasi}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(collapse = TRUE, comment = "#>", fig.width = 6.5, fig.height = 4)
+```
+
+Tujuan akhir paket ini adalah membuat Anda mampu memakai R dan tidyverse standar secara mandiri. Panduan ini
+menunjukkan cara menerjemahkan kode lokal kembali ke kode standar.
+
+## Tiga aturan
+
+1. **Awalan dan nama fungsi** diganti dengan fungsi aslinya. Daftarnya ada di `vignette("pemetaan-fungsi")`;
+   kolom "Fungsi asli" memuat nama lengkapnya, misalnya `trn_filter()` menjadi `dplyr::filter()`.
+2. **Nama argumen** diganti dengan nama aslinya, kolom terakhir pada tabel yang sama. Nilai argumen tidak
+   berubah, jadi `"lm"`, `"fill"`, dan `21` tetap sama.
+3. **Nama dataset dan kolom** diganti dengan yang asli. Lihat `vignette("kamus-dataset")`.
+
+## Contoh berdampingan
+
+```{r, eval = FALSE}
+# Lokal
+penguin |>
+  trn_filter(!is.na(massa_tubuh_g)) |>
+  trn_gabung_kelompok(spesies) |>
+  trn_statistik_ringkas(rerata = dsr_rerata(massa_tubuh_g))
+
+# Standar
+palmerpenguins::penguins |>
+  dplyr::filter(!is.na(body_mass_g)) |>
+  dplyr::group_by(species) |>
+  dplyr::summarise(rerata = mean(body_mass_g))
+```
+
+```{r, eval = FALSE}
+# Lokal
+penguin |>
+  vis_ggplot(grf_estetika(x = panjang_sirip_mm, y = massa_tubuh_g, warna = spesies)) +
+  grf_geometrik_titik(alfa = 0.5) +
+  grf_label(judul = "Judul", sumbu_x = "Sumbu x")
+
+# Standar
+ggplot2::ggplot(
+  palmerpenguins::penguins,
+  ggplot2::aes(x = flipper_length_mm, y = body_mass_g, colour = species)
+) +
+  ggplot2::geom_point(alpha = 0.5) +
+  ggplot2::labs(title = "Judul", x = "Sumbu x")
+```
+
+## Hal yang perlu diperhatikan saat berpindah
+
+- **Pemilihan kolom dengan awalan.** Di buku, `starts_with("dep")` memilih kolom `dep_time` dan `dep_delay`.
+  Pada nama kolom Indonesia, kata pengubah ada di belakang (`waktu_berangkat`, bukan `berangkat_waktu`),
+  sehingga teknik awalan tidak langsung berlaku. Pakai `frm_cocok()` atau `frm_salah_satu()`, atau
+  `starts_with()` pada nama kolom aslinya setelah berpindah.
+- **Nilai kategorikal yang diterjemahkan.** Misalnya `penggerak` pada `mobil_mpg` bernilai `depan`,
+  `belakang`, `4_roda`, sedangkan `drv` pada `mpg` bernilai `f`, `r`, `4`. Saat berpindah ke data asli,
+  nilainya ikut berubah; lihat `vignette("kamus-dataset")`.
+- **Pesan galat dan peringatan.** Pesan dari dplyr, tidyr, readr, dan ggplot2 tetap berbahasa Inggris dan
+  menyebut nama fungsi asli. Itu disengaja: dengan begitu Anda dapat mencari pesan itu di internet.
+- **Fungsi bantu paket ini.** `imp_berkas_contoh()` tidak punya padanan di tidyverse.
+
+## Ingin melihat kode asli dari kode lokal?
+
+Setiap halaman bantuan memiliki bagian "Padanan dengan fungsi asli" dan contoh berdampingan. Ketik, misalnya,
+`?trn_filter`.

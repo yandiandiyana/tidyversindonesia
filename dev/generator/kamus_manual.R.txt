@@ -1,0 +1,12 @@
+  dsr_rerata = .spec(
+    "base", "mean",
+    argumen = c(pangkas = "trim", buang_na = "na.rm"),
+    sama = "x",
+    melalui_titik = c("trim", "na.rm")
+  ),
+
+  dtr_sekilas = .spec(
+    "dplyr", "glimpse",
+    argumen = c(lebar = "width"),
+    sama = "x"
+  )

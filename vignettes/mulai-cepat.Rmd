@@ -1,0 +1,112 @@
+---
+title: "Mulai cepat dengan tidyversindonesia"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Mulai cepat}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(collapse = TRUE, comment = "#>", fig.width = 6.5, fig.height = 4)
+```
+
+Paket ini membantu pemula berbahasa Indonesia belajar R dan tidyverse. Fungsi, argumen, dan dataset
+diterjemahkan, tetapi perilakunya sama dengan aslinya. Paket ini adalah jembatan menuju R dan tidyverse, bukan
+penggantinya.
+
+```{r}
+library(tidyversindonesia)
+```
+
+## Awalan menunjukkan tahap kerja
+
+Awalan nama fungsi memudahkan Anda menemukannya (ketik awalan lalu tekan Tab di RStudio):
+
+| Awalan | Tahap |
+|---|---|
+| `imp_` | impor data dari berkas |
+| `inp_` | memasukkan data (membuat tabel, menulis berkas) |
+| `rpi_` | merapikan data |
+| `trn_` | transformasi data; `frm_` adalah pembantunya |
+| `vis_` | membuat objek plot; `grf_` adalah komponen yang ditambahkan |
+| `dsr_`, `dtr_` | fungsi dasar R dan inspeksi data |
+
+## Melihat data
+
+```{r}
+dtr_sekilas(penguin)
+```
+
+## Mengubah data
+
+```{r}
+penguin |>
+  trn_filter(!is.na(massa_tubuh_g)) |>
+  trn_gabung_kelompok(spesies) |>
+  trn_statistik_ringkas(rerata_massa = dsr_rerata(massa_tubuh_g))
+```
+
+Kode itu setara dengan kode tidyverse standar:
+
+```{r, eval = FALSE}
+palmerpenguins::penguins |>
+  dplyr::filter(!is.na(body_mass_g)) |>
+  dplyr::group_by(species) |>
+  dplyr::summarise(rerata_massa = mean(body_mass_g))
+```
+
+## Membuat grafik
+
+```{r}
+penguin |>
+  vis_ggplot(grf_estetika(
+    x = panjang_sirip_mm, y = massa_tubuh_g, warna = spesies
+  )) +
+  grf_geometrik_titik(buang_na = TRUE) +
+  grf_label(
+    judul = "Sirip dan massa tubuh penguin",
+    sumbu_x = "Panjang sirip (mm)",
+    sumbu_y = "Massa tubuh (g)",
+    warna = "Spesies"
+  )
+```
+
+## Merapikan data
+
+```{r}
+tabel2 |>
+  rpi_lebar(nama_dari = jenis, nilai_dari = jumlah)
+```
+
+## Mengimpor data
+
+Paket membawa berkas contoh. `imp_berkas_contoh()` memberi lokasinya.
+
+```{r}
+imp_berkas_contoh()
+
+siswa <- imp_baca_csv(
+  imp_berkas_contoh("siswa.csv"),
+  na = c("N/A", ""),
+  tampilkan_tipe_kolom = FALSE
+)
+siswa
+```
+
+## Dataset dari buku
+
+Dataset yang dipakai buku tersedia dengan nama dan kolom berbahasa Indonesia, misalnya `penerbangan`
+(dari `nycflights13::flights`) dan `mobil_mpg` (dari `ggplot2::mpg`).
+
+```{r}
+penerbangan |>
+  trn_filter(tujuan == "IAH") |>
+  trn_hitung(maskapai, urut = TRUE)
+```
+
+## Berpindah ke R standar
+
+Fungsi lokal dan fungsi asli boleh dicampur dalam satu skrip. Setiap fungsi mendokumentasikan padanan aslinya
+di bagian "Padanan dengan fungsi asli". Lihat `vignette("panduan-migrasi")` untuk cara berpindah sepenuhnya,
+dan `vignette("pemetaan-fungsi")` untuk daftar lengkapnya.

@@ -1,0 +1,19 @@
+# Sumber: dev/audit-formals.R, 24 Oktober 2026 (lihat versi paket di berkas formals).
+# Semua tbl_df/tbl/data.frame.
+ggplot2::mpg [234 x 11]: manufacturer:character model:character displ:numeric year:integer cyl:integer trans:character drv:character cty:integer hwy:integer fl:character class:character
+  manufacturer: audi | chevrolet | dodge | ford | honda | hyundai | jeep | land rover | lincoln | mercury | nissan | pontiac | subaru | toyota | volkswagen
+  drv: 4 | f | r
+  fl: c | d | e | p | r
+  class: 2seater | compact | midsize | minivan | pickup | subcompact | suv
+  trans: auto(av) | auto(l3) | auto(l4) | auto(l5) | auto(l6) | auto(s4) | auto(s5) | auto(s6) | manual(m5) | manual(m6)
+ggplot2::diamonds [53940 x 10]: carat:numeric cut:ordered color:ordered clarity:ordered depth:numeric table:numeric price:integer x:numeric y:numeric z:numeric
+tidyr::table1 [6 x 4]: country:character year:numeric cases:numeric population:numeric
+tidyr::table2 [12 x 4]: country:character year:numeric type:character count:numeric
+tidyr::table3 [6 x 3]: country:character year:numeric rate:character
+tidyr::billboard [317 x 79]: artist:character track:character date.entered:Date wk1..wk65:numeric wk66..wk76:logical
+tidyr::who2 [7240 x 58]: country:character year:numeric lalu {sp,sn,ep,rel}_{m,f}_{014,1524,2534,3544,4554,5564,65}:numeric (56 kolom)
+tidyr::household [5 x 5]: family:integer dob_child1:Date dob_child2:Date name_child1:character name_child2:character
+tidyr::cms_patient_experience [500 x 5]: org_pac_id:character org_nm:character measure_cd:character measure_title:character prf_rate:numeric
+nycflights13::flights [336776 x 19]: year:integer month:integer day:integer dep_time:integer sched_dep_time:integer dep_delay:numeric arr_time:integer sched_arr_time:integer arr_delay:numeric carrier:character flight:integer tailnum:character origin:character dest:character air_time:numeric distance:numeric hour:numeric minute:numeric time_hour:POSIXct
+palmerpenguins::penguins [344 x 8]: species:factor island:factor bill_length_mm:numeric bill_depth_mm:numeric flipper_length_mm:integer body_mass_g:integer sex:factor year:integer
+# Ukuran data nycflights13 terpasang: Rdata.rdb 4.508.011 byte (lima tabel); flights di memori 38,8 MB.

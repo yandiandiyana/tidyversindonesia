@@ -1,0 +1,36 @@
+#' Penguin Kepulauan Palmer
+#'
+#' Ukuran tubuh tiga spesies penguin di Kepulauan Palmer, Antartika. Ini
+#' adalah versi Bahasa Indonesia dari `palmerpenguins::penguins`. Nilai
+#' numerik, urutan baris, dan nilai hilang tidak diubah; satuan tetap
+#' milimeter dan gram.
+#'
+#' @format Sebuah tibble dengan 344 baris dan 8 kolom:
+#' \describe{
+#'   \item{spesies}{Spesies penguin: Adelie, Chinstrap, atau Gentoo. Asli:
+#'   `species`.}
+#'   \item{pulau}{Pulau tempat pengamatan: Biscoe, Dream, atau Torgersen.
+#'   Asli: `island`.}
+#'   \item{panjang_paruh_mm}{Panjang paruh dalam milimeter. Asli:
+#'   `bill_length_mm`.}
+#'   \item{kedalaman_paruh_mm}{Kedalaman paruh dalam milimeter. Asli:
+#'   `bill_depth_mm`.}
+#'   \item{panjang_sirip_mm}{Panjang sirip dalam milimeter. Asli:
+#'   `flipper_length_mm`.}
+#'   \item{massa_tubuh_g}{Massa tubuh dalam gram. Asli: `body_mass_g`.}
+#'   \item{jenis_kelamin}{Jenis kelamin: `jantan` atau `betina`. Asli:
+#'   `sex` (`male`, `female`).}
+#'   \item{tahun}{Tahun pengamatan. Asli: `year`.}
+#' }
+#'
+#' @section Perbedaan dengan dataset asli:
+#' Nama kolom diterjemahkan, dan nilai `jenis_kelamin` diterjemahkan dari
+#' `male`/`female` menjadi `jantan`/`betina`. Nama spesies dan pulau tidak
+#' diubah karena merupakan nama diri. Dataset asli tersedia sebagai
+#' `palmerpenguins::penguins`.
+#'
+#' @source Data dikumpulkan oleh Dr. Kristen Gorman dan Palmer Station LTER,
+#' tersedia melalui paket palmerpenguins (lisensi CC0).
+#'
+#' @seealso `palmerpenguins::penguins`
+"penguin"

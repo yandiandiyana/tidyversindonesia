@@ -1,0 +1,100 @@
+---
+output: github_document
+---
+
+<!-- README.md dihasilkan dari README.Rmd. Ubah README.Rmd, lalu jalankan devtools::build_readme(). -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+
+# tidyversindonesia
+
+Paket pendidikan untuk pemula berbahasa Indonesia yang belajar R dan
+tidyverse. Fungsi, argumen, dan dataset diterjemahkan ke Bahasa Indonesia
+agar hambatan bahasa tidak menghalangi pemahaman alur kerja analisis data.
+
+Paket ini adalah **jembatan** menuju R dan tidyverse, bukan penggantinya.
+Setiap fungsi mendokumentasikan padanan aslinya, dan fungsi lokal dapat
+dicampur dengan fungsi asli.
+
+> **Status:** versi pengembangan. Paket ini belum tersedia di CRAN.
+
+## Instalasi
+
+Dari folder sumber paket:
+
+```r
+# install.packages("devtools")
+devtools::install()
+```
+
+## Keluarga fungsi
+
+| Awalan | Fungsi |
+|---|---|
+| `imp_` | mengimpor data dari berkas |
+| `inp_` | memasukkan data (membuat tabel di R) |
+| `rpi_` | merapikan data |
+| `trn_` | transformasi data; `frm_` adalah pendukungnya |
+| `vis_` | membuat objek plot; `grf_` adalah komponen yang ditambahkan |
+| `dsr_`, `dtr_` | fungsi dasar R dan inspeksi data |
+
+## Isi paket
+
+- **108 fungsi** dalam sembilan keluarga yang diawali nama tahap kerja (tabel di atas).
+- **12 dataset** berbahasa Indonesia yang dipakai buku *R for Data Science* edisi ke-2
+  (misalnya `penguin`, `penerbangan`, `mobil`). Hanya `penguin` disimpan di dalam paket;
+  lainnya dibuat saat dipakai dari paket sumbernya.
+- Kompatibilitas dengan **delapan bab Bagian I buku**: setiap contoh dan latihan berkode telah
+  dijalankan dalam bentuk asli dan lokal, lalu hasilnya dibandingkan oleh pengujian otomatis.
+
+## Dokumentasi
+
+| Vignette | Isi |
+|---|---|
+| `vignette("mulai-cepat")` | tutorial singkat |
+| `vignette("pemetaan-fungsi")` | semua fungsi dan argumen beserta padanan aslinya |
+| `vignette("kamus-dataset")` | kolom dan nilai tiap dataset |
+| `vignette("kompatibilitas-r4ds")` | cara mengerjakan tiap contoh buku |
+| `vignette("panduan-migrasi")` | berpindah ke R dan tidyverse standar |
+| `vignette("pemecahan-masalah")` | masalah yang sering ditemui |
+
+## Contoh
+
+```{r contoh, message = FALSE}
+library(tidyversindonesia)
+
+penguin |>
+  trn_filter(!is.na(massa_tubuh_g)) |>
+  trn_gabung_kelompok(spesies) |>
+  trn_statistik_ringkas(rerata_massa = dsr_rerata(massa_tubuh_g))
+```
+
+```{r plot, warning = FALSE}
+penguin |>
+  vis_ggplot(grf_estetika(
+    x = panjang_sirip_mm, y = massa_tubuh_g, warna = spesies
+  )) +
+  grf_geometrik_titik(buang_na = TRUE) +
+  grf_label(
+    judul = "Sirip dan massa tubuh penguin",
+    sumbu_x = "Panjang sirip (mm)",
+    sumbu_y = "Massa tubuh (g)",
+    warna = "Spesies"
+  )
+```
+
+Kode di atas setara dengan kode tidyverse standar:
+
+```r
+palmerpenguins::penguins |>
+  dplyr::filter(!is.na(body_mass_g)) |>
+  dplyr::group_by(species) |>
+  dplyr::summarise(rerata_massa = mean(body_mass_g))
+```

@@ -1,0 +1,44 @@
+Package: tidyversindonesia
+Title: Indonesian-Language Interface for Learning R and the Tidyverse
+Version: 0.2.0
+Authors@R: 
+    person("Yandi", "Andiyana", , "tidyversindonesia@gmail.com", role = c("aut", "cre", "cph"))
+Description: An educational package for Indonesian-speaking beginners. It
+    provides thin wrappers around functions from 'dplyr', 'tidyr', 'readr',
+    'tibble' and 'ggplot2' with Indonesian function names, Indonesian
+    argument names and localized datasets, so that learners can follow the
+    first part of 'R for Data Science' in Bahasa Indonesia while keeping a
+    clear path to standard R and tidyverse code.
+URL: https://github.com/yandiandiyana/tidyversindonesia
+BugReports: https://github.com/yandiandiyana/tidyversindonesia/issues
+License: MIT + file LICENSE
+Depends: 
+    R (>= 4.1.0)
+Imports: 
+    datasets,
+    dplyr (>= 1.1.0),
+    ggplot2 (>= 4.0.0),
+    nycflights13,
+    readr (>= 2.1.0),
+    stats,
+    tibble (>= 3.2.0),
+    tidyr (>= 1.3.0),
+    tidyselect (>= 1.2.0),
+    utils
+Suggests: 
+    arrow,
+    forcats,
+    ggthemes,
+    hexbin,
+    janitor,
+    knitr,
+    palmerpenguins,
+    rmarkdown,
+    testthat (>= 3.1.5)
+Config/testthat/edition: 3
+VignetteBuilder: knitr
+Encoding: UTF-8
+Language: id
+LazyData: true
+Roxygen: list(markdown = TRUE)
+Config/roxygen2/version: 8.1.1

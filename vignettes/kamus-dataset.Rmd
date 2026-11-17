@@ -1,0 +1,199 @@
+---
+title: "Kamus dataset"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Kamus dataset}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(collapse = TRUE, comment = "#>", fig.width = 6.5, fig.height = 4)
+```
+
+Dataset lokal memakai nama kolom berbahasa Indonesia. Nilai numerik, urutan baris, dan nilai hilang tidak diubah. Hanya `penguin` disimpan di dalam paket; dataset lain dibuat saat dipakai dari paket sumbernya sehingga paket ini tidak mendistribusikan ulang datanya. Dokumentasi lengkap tiap dataset ada di `?nama_dataset`.
+
+## penguin (dari palmerpenguins::penguins)
+
+| Kolom asli | Kolom lokal |
+|---|---|
+| `species` | `spesies` |
+| `island` | `pulau` |
+| `bill_length_mm` | `panjang_paruh_mm` |
+| `bill_depth_mm` | `kedalaman_paruh_mm` |
+| `flipper_length_mm` | `panjang_sirip_mm` |
+| `body_mass_g` | `massa_tubuh_g` |
+| `sex` | `jenis_kelamin` |
+| `year` | `tahun` |
+
+Nilai `jenis_kelamin`: `male` menjadi `jantan`, `female` menjadi `betina`.
+
+## mobil_mpg (dari ggplot2::mpg)
+
+Efisiensi bahan bakar mobil populer 1999-2008
+
+| Kolom asli | Kolom lokal |
+|---|---|
+| `manufacturer` | `produsen` |
+| `model` | `model` |
+| `displ` | `kapasitas_mesin` |
+| `year` | `tahun` |
+| `cyl` | `silinder` |
+| `trans` | `transmisi` |
+| `drv` | `penggerak` |
+| `cty` | `mpg_jalan_kota` |
+| `hwy` | `mpg_jalan_raya` |
+| `fl` | `bahan_bakar` |
+| `class` | `kelas` |
+
+Nilai `transmisi` (asli: `trans`): `auto(av)` menjadi `otomatis(av)`, `auto(l3)` menjadi `otomatis(l3)`, `auto(l4)` menjadi `otomatis(l4)`, `auto(l5)` menjadi `otomatis(l5)`, `auto(l6)` menjadi `otomatis(l6)`, `auto(s4)` menjadi `otomatis(s4)`, `auto(s5)` menjadi `otomatis(s5)`, `auto(s6)` menjadi `otomatis(s6)`.
+
+Nilai `penggerak` (asli: `drv`): `4` menjadi `4_roda`, `f` menjadi `depan`, `r` menjadi `belakang`.
+
+Nilai `bahan_bakar` (asli: `fl`): `c` menjadi `CNG`, `d` menjadi `diesel`, `e` menjadi `etanol`, `p` menjadi `bensin_premium`, `r` menjadi `bensin_reguler`.
+
+Nilai `kelas` (asli: `class`): `2seater` menjadi `2_penumpang`, `compact` menjadi `kompak`, `midsize` menjadi `ukuran_menengah`, `pickup` menjadi `pikap`, `subcompact` menjadi `subkompak`.
+
+## mobil (dari datasets::mtcars)
+
+Uji jalan mobil dari majalah Motor Trend
+
+| Kolom asli | Kolom lokal |
+|---|---|
+| (nama baris) | `mobil` |
+| `mpg` | `efisiensi_mpg` |
+| `cyl` | `silinder` |
+| `disp` | `kapasitas_mesin_in3` |
+| `hp` | `tenaga_kuda` |
+| `drat` | `rasio_gardan` |
+| `wt` | `berat_ribu_lb` |
+| `qsec` | `waktu_seperempat_mil` |
+| `vs` | `bentuk_mesin` |
+| `am` | `kode_transmisi` |
+| `gear` | `jumlah_gigi` |
+| `carb` | `jumlah_karburator` |
+
+## berlian (dari ggplot2::diamonds)
+
+Harga dan ciri berlian
+
+| Kolom asli | Kolom lokal |
+|---|---|
+| `carat` | `karat` |
+| `cut` | `potongan` |
+| `color` | `warna` |
+| `clarity` | `kejernihan` |
+| `depth` | `kedalaman_persen` |
+| `table` | `meja_persen` |
+| `price` | `harga` |
+| `x` | `panjang_mm` |
+| `y` | `lebar_mm` |
+| `z` | `kedalaman_mm` |
+
+Nilai `potongan` (asli: `cut`): `Fair` menjadi `Cukup`, `Good` menjadi `Baik`, `Very Good` menjadi `Sangat Baik`.
+
+## tabel1 (dari tidyr::table1)
+
+Contoh tabel rapi: kasus dan populasi (bentuk 1)
+
+| Kolom asli | Kolom lokal |
+|---|---|
+| `country` | `negara` |
+| `year` | `tahun` |
+| `cases` | `kasus` |
+| `population` | `populasi` |
+
+## tabel2 (dari tidyr::table2)
+
+Contoh tabel: kasus dan populasi (bentuk 2)
+
+| Kolom asli | Kolom lokal |
+|---|---|
+| `country` | `negara` |
+| `year` | `tahun` |
+| `type` | `jenis` |
+| `count` | `jumlah` |
+
+Nilai `jenis` (asli: `type`): `cases` menjadi `kasus`, `population` menjadi `populasi`.
+
+## tabel3 (dari tidyr::table3)
+
+Contoh tabel: kasus dan populasi (bentuk 3)
+
+| Kolom asli | Kolom lokal |
+|---|---|
+| `country` | `negara` |
+| `year` | `tahun` |
+| `rate` | `rasio` |
+
+## tangga_lagu (dari tidyr::billboard)
+
+Peringkat lagu pada tangga lagu Billboard
+
+| Kolom asli | Kolom lokal |
+|---|---|
+| `artist` | `artis` |
+| `track` | `lagu` |
+| `date.entered` | `tanggal_masuk` |
+| `wk1`, ..., `wk76` | `minggu1`, ..., `minggu76` |
+
+## tb_who (dari tidyr::who2)
+
+Kasus tuberkulosis menurut WHO (kolom bersandi)
+
+| Kolom asli | Kolom lokal |
+|---|---|
+| `country` | `negara` |
+| `year` | `tahun` |
+| `sp_m_014`, ..., `rel_f_65` (56 kolom) | tidak diubah (kode WHO) |
+
+## rumah_tangga (dari tidyr::household)
+
+Contoh data rumah tangga dengan dua anak
+
+| Kolom asli | Kolom lokal |
+|---|---|
+| `family` | `keluarga` |
+| `dob_child1` | `lahir_anak1` |
+| `dob_child2` | `lahir_anak2` |
+| `name_child1` | `nama_anak1` |
+| `name_child2` | `nama_anak2` |
+
+## pengalaman_pasien (dari tidyr::cms_patient_experience)
+
+Pengalaman pasien menurut organisasi layanan kesehatan
+
+| Kolom asli | Kolom lokal |
+|---|---|
+| `org_pac_id` | `organisasi_id` |
+| `org_nm` | `organisasi_nama` |
+| `measure_cd` | `ukuran_kode` |
+| `measure_title` | `ukuran_judul` |
+| `prf_rate` | `tingkat_kinerja` |
+
+## penerbangan (dari nycflights13::flights)
+
+Penerbangan dari Kota New York, 2013
+
+| Kolom asli | Kolom lokal |
+|---|---|
+| `year` | `tahun` |
+| `month` | `bulan` |
+| `day` | `hari` |
+| `dep_time` | `waktu_berangkat` |
+| `sched_dep_time` | `waktu_jadwal_berangkat` |
+| `dep_delay` | `keterlambatan_berangkat` |
+| `arr_time` | `waktu_tiba` |
+| `sched_arr_time` | `waktu_jadwal_tiba` |
+| `arr_delay` | `keterlambatan_tiba` |
+| `carrier` | `maskapai` |
+| `flight` | `nomor_penerbangan` |
+| `tailnum` | `nomor_ekor` |
+| `origin` | `asal` |
+| `dest` | `tujuan` |
+| `air_time` | `waktu_terbang` |
+| `distance` | `jarak` |
+| `hour` | `jam` |
+| `minute` | `menit` |
+| `time_hour` | `waktu_jam` |
+
